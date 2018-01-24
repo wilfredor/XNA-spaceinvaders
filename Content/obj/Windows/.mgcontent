@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/bullet.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/enemie.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/enemie0.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/nave.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Cloud001.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Particle004.png</File>
+    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Particle005.png</File>
+  </SourceFiles>
+</SourceFileCollection>
