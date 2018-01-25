@@ -4,12 +4,12 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/bullet.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/enemie.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/enemie0.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/nave.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Cloud001.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Particle004.png</File>
-    <File>C:/Users/Interne/source/repos/Game16/Game16/Content/Particle005.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bullet.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie0.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/nave.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Cloud001.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle004.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle005.png</File>
   </SourceFiles>
 </SourceFileCollection>

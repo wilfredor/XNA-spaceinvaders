@@ -37,7 +37,7 @@ namespace SpaceInvaders
                 Game.Components.Add(
                     new Explosion(
                         ref this.game,
-                        new Vector2(position.X, position.Y)
+                        new Vector2(position.X, position.Y - bullet.Height)
                     ));
                 Game.Components.Remove(this);
             }

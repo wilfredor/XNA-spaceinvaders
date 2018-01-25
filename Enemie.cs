@@ -32,18 +32,19 @@ namespace SpaceInvaders
 		private void Circular(GameTime gameTime){
 
 			Random rnd = new Random();
+
 			int move = rnd.Next(8, 9);
 
 			float time = (float)gameTime.TotalGameTime.TotalSeconds; 
 			float speed = move;
 			float radius = 100;
-			//Center origin position x,y
-			if ((originX == limitWidth) || (originX == 0))
-				directionX *=-1;
+            //Center origin position x,y
+            if ((originX == limitWidth) || (originX == 0))
+            {
+                directionX *= -1;
+            }
 
 			originX=originX+directionX;
-
-
 
 			Vector2 origin = new Vector2(originX,0);
 
@@ -76,7 +77,7 @@ namespace SpaceInvaders
 		public override void Update (GameTime gameTime)
 		{
 			
-			this.SpaceInvadersMovement (gameTime);
+			SpaceInvadersMovement (gameTime);
 
 		}
 
@@ -96,12 +97,13 @@ namespace SpaceInvaders
 			this.Width = enemie.Width;
 			this.Height = enemie.Height;
 			position.Y =  (enemie.Width + enemie.Width / 2);
-			position.X = Game.GraphicsDevice.Viewport.Width/ 2 - enemie.Width;
-			directionX =1;
+			position.X = Game.GraphicsDevice.Viewport.Width/ 2 - enemie.Width;			
 			limitHeight = Game.GraphicsDevice.Viewport.Height - (enemie.Height);
 			limitWidth = Game.GraphicsDevice.Viewport.Width - (enemie.Width);
 
-		}
+            directionX = 1;
+
+        }
 
 		public override void Draw (GameTime gameTime)
 		{
@@ -109,7 +111,7 @@ namespace SpaceInvaders
 
 			spriteBatch.Begin ();
 
-			spriteBatch.Draw (enemie, position, Color.White);
+			    spriteBatch.Draw (enemie, position, Color.White);
 
 			spriteBatch.End ();
 		}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Interne/source/repos/Game16/Game16/Content/enemie.png</SourceFile>
+  <SourceFile>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie.png</SourceFile>
   <SourceTime>2016-06-21T21:05:01-04:00</SourceTime>
-  <DestFile>C:/Users/Interne/source/repos/Game16/Game16/Content/bin/Windows/enemie.xnb</DestFile>
-  <DestTime>2018-01-22T16:20:05.5864006-05:00</DestTime>
+  <DestFile>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bin/Windows/enemie.xnb</DestFile>
+  <DestTime>2018-01-24T10:22:14.8495183-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

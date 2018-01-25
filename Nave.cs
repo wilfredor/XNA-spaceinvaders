@@ -110,7 +110,8 @@ namespace SpaceInvaders
 			position.X = Game.GraphicsDevice.Viewport.Width / 2 - nave.Width;
 			limitHeight = game.GraphicsDevice.Viewport.Height - (nave.Height);
 			limitWidth = game.GraphicsDevice.Viewport.Width - (nave.Width);
-			this.lives = 1;
+
+			lives = Constant.defaultLivesQuantity;
 		}
 
 		public override void Draw (GameTime gameTime)

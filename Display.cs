@@ -50,7 +50,7 @@ namespace SpaceInvaders
 
 		public override void Draw (GameTime gameTime)
 		{
-			String shotsLabel = "Shots: " + this.game.nave.numShotsFromCurrentMagazine.ToString ();
+			String shotsLabel = Constant.shotsLabel + ": " + this.game.nave.numShotsFromCurrentMagazine.ToString ();
 			base.Draw (gameTime);
 
 			spriteBatch.Begin();

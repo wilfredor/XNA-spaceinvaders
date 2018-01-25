@@ -26,7 +26,7 @@ namespace SpaceInvaders
 		public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = "Content";	            
+			Content.RootDirectory = Constant.rootContentDirectory;	            
 			graphics.IsFullScreen = false;
 
             // Create new renderer and set its graphics devide to "this" device                     

@@ -42,7 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bullet.cs" />
-    <Compile Include="Explosion.cs" />
+    <Compile Include="Business\Common.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="Explosion\Explosion.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Enemie.cs" />
@@ -79,6 +81,7 @@
     <Content Include="Content\Cloud001.png" />
     <Content Include="Content\enemie.png" />
     <Content Include="Content\enemie0.png" />
+    <Content Include="Content\mars001.png" />
     <Content Include="Content\nave.png" />
     <Content Include="Content\Particle004.png" />
     <Content Include="Content\Particle005.png" />
@@ -93,6 +96,7 @@
     <None Include="Content\Font.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

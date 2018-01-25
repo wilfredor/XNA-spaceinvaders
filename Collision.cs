@@ -14,7 +14,7 @@ namespace SpaceInvaders
 		private static Boolean checkEllementCollision(Vector2 position, Enemie e)
 		{
 			return ((e.position.X <= position.X) && (position.X <= (e.position.X + e.Width))) &&
-				((e.position.Y <= position.Y) && (position.Y <= (e.position.Y + e.Width)));
+				((e.position.Y <= position.Y) && (position.Y <= (e.position.Y + e.Height)));
 		}
 		private static Boolean isEnemie(Type e)
 		{
