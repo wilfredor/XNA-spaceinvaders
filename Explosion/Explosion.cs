@@ -48,7 +48,6 @@ namespace SpaceInvaders
             base.Initialize();
             Random rnd = new Random();
 
-            
             listParticle = new List<Particle>() { };
 
             //Particles Explosion generator
@@ -56,15 +55,14 @@ namespace SpaceInvaders
             {
                 listParticle.Add(
                     new Particle(
-                        Game.GraphicsDevice.Viewport.Height, positionBullet, 
+                        Game, positionBullet,
                         new Vector2()
-                        {
+                        { 
                             X = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange),
                             Y = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange)
                         }
                     )
-                       { Rect = new Texture2D(Game.GraphicsDevice, Constant.particleWidth, Constant.particleHeight)
-                    }
+
                 );                
             }
             
@@ -73,8 +71,7 @@ namespace SpaceInvaders
         public override void Draw(GameTime gameTime)
         {
 
-
-            listParticle.ForEach(x => x.Rect.SetData(x.data));
+            listParticle.ForEach(x => x.Rect.SetData(x.data));            
 
             base.Draw(gameTime);
             

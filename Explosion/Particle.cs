@@ -25,25 +25,48 @@ namespace SpaceInvaders
         float oldX;
         float oldY;
 
-        public Particle(int viewportHeight, Vector2 originPosition, Vector2 direction)
+        Game game;
+
+        public Particle(Game game, Vector2 originPosition, Vector2 direction)
         {
-            data = new Color[Constant.particleWidth * Constant.particleHeight];
+            this.game = game;
             
-            for (int i = 0; i < data.Length; ++i)
-            {
-                data[i] = Color.White;
-            }
+           
             position = originPosition;
             this.direction = direction;
          
             delete = false;
-            this.viewportHeight = viewportHeight;
-            
 
+            this.viewportHeight = game.GraphicsDevice.Viewport.Height;
+
+            data = new Color[Constant.particleWidth * Constant.particleHeight];
+
+            for (int i = 0; i < data.Length; ++i)
+            {
+                data[i] = Color.White;
+            }
+
+            Rect = new Texture2D(game.GraphicsDevice, Constant.particleWidth, Constant.particleHeight);
+        }
+
+        private void UpdateData() {
+            delete = ((Rect.Width - 1) == 0) || (Rect.Height - 1 == 0);
+            if (!delete)
+            {
+                data = new Color[(Rect.Width - 1) * (Rect.Height - 1)];
+
+                for (int i = 0; i < data.Length; ++i)
+                {
+                    data[i] = Color.White;
+                }
+
+                Rect = new Texture2D(game.GraphicsDevice, Rect.Width - 1, Rect.Height - 1);
+            }
         }
 
         public void Move()
         {
+            UpdateData();
             //this.delete = Collision.checkCollision(position, game);
             oldX = position.X;
             oldY = position.Y;
