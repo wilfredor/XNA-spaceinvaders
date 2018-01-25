@@ -48,6 +48,7 @@
     <Compile Include="Collision.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Enemie.cs" />
+    <Compile Include="Explosion\Particle.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Nave.cs" />
     <Compile Include="Program.cs" />

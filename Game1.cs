@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
+using System;
 
 #endregion
 
@@ -22,8 +24,9 @@ namespace SpaceInvaders
 		private static bool gameOver;
 		public Nave nave;
 
+        private Random rnd = new Random();
 
-		public Game1 ()
+        public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			Content.RootDirectory = Constant.rootContentDirectory;	            
@@ -81,12 +84,16 @@ namespace SpaceInvaders
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			// Exit() is obsolete on iOS
+            // For Mobile devices, this logic will close the Game when the Back button is pressed
+            // Exit() is obsolete on iOS
 
+            if (Components.OfType<Enemie>().Count().Equals(0))
+            {
+                Components.Add(new Enemie(this,  rnd.Next(1, 600), rnd.Next(1, 300)));
+            }
 
-			#if !__IOS__
-			if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+            #if !__IOS__
+            if (GamePad.GetState (PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
 			    Keyboard.GetState ().IsKeyDown (Keys.Escape)) {
 				Exit ();
 			}

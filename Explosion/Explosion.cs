@@ -2,66 +2,39 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
-
+using System.Collections.Generic;
 
 namespace SpaceInvaders
 {
     class Explosion : DrawableGameComponent
     {
-        public Vector2 position = Vector2.Zero;
-        Vector2 navePosition = Vector2.Zero;
-        Vector2 velocity = Vector2.One;
-
-        private Texture2D bullet;
+        
+        Vector2 positionBullet = Vector2.Zero;
+                
         SpriteBatch spriteBatch;
-        public Boolean delete;
+               
+        List<Particle> listParticle;   
 
-        int aceleration = -4;
-
-        Texture2D rect;
-        Color[] data = new Color[5 * 5];     
-
-        public Explosion(ref Game1 game, Vector2 positionNave) : base (game)
+        public Explosion(ref Game1 game, Vector2 positionBullet) : base (game)
 		{
-            navePosition = positionNave;
+            this.positionBullet = positionBullet;
             //should only ever be one player, all value defaults set in Initialize()
         }
 
 
         public override void Update(GameTime gameTime)
         {
+            listParticle.ForEach(x => x.Move());
 
-            this.delete = Collision.checkCollision(position, Game);
+            listParticle.RemoveAll(x => x.delete);
 
-            if (delete)
+            if (listParticle.Count.Equals(0))
             {
                 Game.Components.Remove(this);
-            }
-            else
-            {
-                if (((position.Y <= Game.GraphicsDevice.Viewport.Height)))
-                {
-                    position.Y -= velocity.Y* aceleration;
-                    position.X -= velocity.X* aceleration;
-                }
-                else
-                {
-                    delete = true;
-                    Game.Components.Remove(this);
-                }
-                base.Update(gameTime);
-            }
-
-          
+            }                     
 
             base.Update(gameTime);
-        }
-
-        private void SetInitPosition(Vector2 newPosition)
-        {
-            position.Y = newPosition.Y;
-            position.X = newPosition.X;
-        }
+        }        
 
         protected override void LoadContent()
         {
@@ -73,33 +46,46 @@ namespace SpaceInvaders
         public override void Initialize()
         {
             base.Initialize();
+            Random rnd = new Random();
 
-            delete = false;
-            //bullet = Game.Content.Load<Texture2D>("explosion");
-            // velocity = new Vector2(10, 10);
-            SetInitPosition(navePosition);
-
-            rect = new Texture2D(Game.GraphicsDevice, 5, 5);
             
+            listParticle = new List<Particle>() { };
 
-
+            //Particles Explosion generator
+            for (int i=0;i<=Constant.explosionParticlesCount; i++)
+            {
+                listParticle.Add(
+                    new Particle(
+                        Game.GraphicsDevice.Viewport.Height, positionBullet, 
+                        new Vector2()
+                        {
+                            X = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange),
+                            Y = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange)
+                        }
+                    )
+                       { Rect = new Texture2D(Game.GraphicsDevice, Constant.particleWidth, Constant.particleHeight)
+                    }
+                );                
+            }
+            
         }
 
         public override void Draw(GameTime gameTime)
         {
 
-            for (int i = 0; i < data.Length; ++i)
-            {
-                data[i] = Color.White;
-            }
 
-            rect.SetData(data);
+            listParticle.ForEach(x => x.Rect.SetData(x.data));
+
             base.Draw(gameTime);
+            
             spriteBatch.Begin();
             //spriteBatch.Draw(bullet, position, Color.White);
-            spriteBatch.Draw(rect, position, Color.White);
+            foreach (Particle particle in listParticle)
+            {
+                spriteBatch.Draw(particle.Rect, particle.position, Color.White);
+            }
 
-            
+
             spriteBatch.End();
         }
 

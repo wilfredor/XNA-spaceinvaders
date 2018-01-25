@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders
 {
@@ -11,5 +7,12 @@ namespace SpaceInvaders
         public const int defaultLivesQuantity = 1;
         public const string shotsLabel = "Shots";
         public const string rootContentDirectory = "Content";
+
+        //Particle
+        public const int particleHeight = 3;
+        public const int particleWidth = 3;
+        public const int explosionSpeed = 5;
+        public const int explosionParticlesCount = 100;
+        public const int explosionParticlesSpeedRange = 4;
     }
 }
