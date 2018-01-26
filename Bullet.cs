@@ -39,6 +39,7 @@ namespace SpaceInvaders
                         ref this.game,
                         new Vector2(position.X, position.Y - bullet.Height)
                     ));
+                game.score++;
                 Game.Components.Remove(this);
             }
             else
@@ -47,12 +48,8 @@ namespace SpaceInvaders
                     position.Y -= velocity.Y;
                 else
                 {
-
-
-                    this.delete = true;
+                    //delete = true;
                     Game.Components.Remove(this);
-                    //this = null;
-                    //this.SetInitPosition (navePosition);
 
                 }
                 base.Update(gameTime);

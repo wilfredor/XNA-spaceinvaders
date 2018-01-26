@@ -15,7 +15,9 @@ namespace SpaceInvaders
   
         Game1 game;
 
+        Color backgroundColor;
 
+        private int oldLevel;
 
         public Map(Game1 game1) : base(game1)
         {
@@ -55,14 +57,26 @@ namespace SpaceInvaders
             map = Game.Content.Load<Texture2D>("mars001");
             velocity = new Vector2(5, 5);
             position = new Vector2(0, 0);
-            
+
+
+            oldLevel = game.level;
+
+            backgroundColor = Color.White;
+
         }
 
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             spriteBatch.Begin();
-            spriteBatch.Draw(map, position, Color.White);
+            if (oldLevel != game.level)
+            {
+                backgroundColor = Tool.ChangeColorBrightness(backgroundColor, -0.5f);
+                GraphicsDevice.Clear(backgroundColor);                
+                oldLevel = game.level;
+            }
+                       
+            spriteBatch.Draw(map, position, backgroundColor);
             spriteBatch.End();
         }
     }

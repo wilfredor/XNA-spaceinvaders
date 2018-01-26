@@ -29,24 +29,15 @@ namespace SpaceInvaders
 			//Enemie enemie = null;
 
 			//For each enemy
-			foreach (var enemie in enemies)
-			{
-				//Check Enemy type
-
-					
+			foreach (Enemie enemie in enemies)
+			{				
 					//Check bullet collition with Enemy
 					if (checkEllementCollision(position, enemie)) {
 						//Delete Enemy
 						game.Components.Remove(enemie);
-
-						//Delete bullet
-
+                        						
 						return true;
-
-
-					}
-				
-
+					}				
 			}
 
 			return false;

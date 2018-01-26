@@ -7,6 +7,8 @@ namespace SpaceInvaders
         public const int defaultLivesQuantity = 5;
         public const string shotsLabel = "Shots";
         public const string livesLabel = "Lives";
+        public const string levelLabel = "Level";
+        public const string scoreLabel = "Score";
         public const string rootContentDirectory = "Content";
 
         //Particle

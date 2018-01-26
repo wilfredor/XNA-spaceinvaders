@@ -22,10 +22,12 @@ namespace SpaceInvaders
 
 		int enemySize = 100;
 		private static bool gameOver;
-		public Nave nave;
+		public Nave nave;   
 
         private Random rnd = new Random();
 
+        public int level;
+        public int score;
         public Game1 ()
 		{
 			graphics = new GraphicsDeviceManager (this);
@@ -48,6 +50,8 @@ namespace SpaceInvaders
 			gameOver = false;
             //level map
             Components.Add(new Map(this));
+            level = 1;
+            score = 0;
 
             //Add a enemie 
             Components.Add (new Enemie (this, 10, 10));
@@ -60,9 +64,6 @@ namespace SpaceInvaders
 
             //Label info 
 			Components.Add (display);
-
-
-            
 
             base.Initialize ();
 
@@ -93,7 +94,11 @@ namespace SpaceInvaders
 
             if (Components.OfType<Enemie>().Count().Equals(0))
             {
-                Components.Add(new Enemie(this,  rnd.Next(1, 600), rnd.Next(1, 300)));
+                level++;
+                for (int i = 0; i <= level; i++)
+                {
+                    Components.Add(new Enemie(this, rnd.Next(1, 600), rnd.Next(1, 300)));
+                }
             }
 
             #if !__IOS__

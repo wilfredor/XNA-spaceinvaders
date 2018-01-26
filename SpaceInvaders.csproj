@@ -50,6 +50,7 @@
     <Compile Include="Enemie.cs" />
     <Compile Include="Explosion\Particle.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameInfo.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Nave.cs" />
     <Compile Include="Program.cs" />
