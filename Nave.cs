@@ -7,7 +7,7 @@ namespace SpaceInvaders
 {
 	public class Nave: DrawableGameComponent
 	{
-		public int numShotsFromCurrentMagazine = 100;
+		public int numShotsFromCurrentMagazine = 2;
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
 
@@ -17,8 +17,9 @@ namespace SpaceInvaders
 		Game1 game;
 		SpriteBatch spriteBatch;
 		KeyboardState currentKBState;
-
-		int limitHeight;
+        public int Width;
+        public int Height;
+        int limitHeight;
 		int limitWidth;
 		public int lives;
 
@@ -46,7 +47,7 @@ namespace SpaceInvaders
 			}
 
 			//no more bullets
-			if(numShotsFromCurrentMagazine == 0)
+			if(numShotsFromCurrentMagazine <= 0)
 			{
 				timeSinceLastShot = -8f;//since magazine is empty, set accumulator to -8 so it will be 10 seconds before it gets to the required 2 and initiate the next shot
 				numShotsFromCurrentMagazine = 0;//reset the magazine.
@@ -62,14 +63,14 @@ namespace SpaceInvaders
 			position.Y = state.Y;
 
 			// Check if Right Mouse Button pressed, if so, exit
-			if (state.LeftButton == ButtonState.Pressed)
+			if ((state.LeftButton == ButtonState.Pressed)&&(numShotsFromCurrentMagazine>0))
 				Shoot();
-			
+            else { timeSinceLastShot = 0f; }
 
 			currentKBState = Keyboard.GetState ();
 
             //Check collision
-            if (Collision.checkCollision(position, Game))
+            if (Collision.CheckCollision<Enemie>(position, Game))
             {
                 game.Components.Add(
                    new Explosion(
@@ -115,8 +116,10 @@ namespace SpaceInvaders
 		{
 			base.Initialize ();
 
-			nave = Game.Content.Load<Texture2D> ("nave"); 
-			velocity = new Vector2 (5, 5);
+			nave = Game.Content.Load<Texture2D> ("nave");
+            this.Width = nave.Width;
+            this.Height = nave.Height;
+            velocity = new Vector2 (5, 5);
 			position.Y = Game.GraphicsDevice.Viewport.Height - (nave.Width + nave.Width / 2);
 			position.X = Game.GraphicsDevice.Viewport.Width / 2 - nave.Width;
 

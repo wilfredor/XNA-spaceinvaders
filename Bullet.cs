@@ -29,7 +29,7 @@ namespace SpaceInvaders
 		public override void Update (GameTime gameTime)
 		{
 			
-			delete = Collision.checkCollision (position, Game);
+			delete = Collision.CheckCollision<Enemie>(position, Game,true);
 
 
             if (delete)

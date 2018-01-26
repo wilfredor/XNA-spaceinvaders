@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceInvaders
 {
-	public class Enemie: Microsoft.Xna.Framework.DrawableGameComponent
-	{
+	public class Enemie: DrawableGameComponent
+    {
 		public Vector2 position = Vector2.Zero;
 		Vector2 velocity = Vector2.One;
 		private Texture2D enemie;

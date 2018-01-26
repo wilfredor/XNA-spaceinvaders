@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bullet.cs" />
+    <Compile Include="BulletPackage.cs" />
     <Compile Include="Business\Common.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Explosion\Explosion.cs" />

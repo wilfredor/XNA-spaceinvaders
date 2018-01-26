@@ -92,12 +92,25 @@ namespace SpaceInvaders
             // For Mobile devices, this logic will close the Game when the Back button is pressed
             // Exit() is obsolete on iOS
 
+            //Next Level
             if (Components.OfType<Enemie>().Count().Equals(0))
             {
                 level++;
                 for (int i = 0; i <= level; i++)
                 {
                     Components.Add(new Enemie(this, rnd.Next(1, 600), rnd.Next(1, 300)));
+                }
+            }
+
+            Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
+
+            if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<BulletPackage>().Count()==0))
+            {
+                nave = Components.OfType<Nave>().First();
+
+                if (nave.numShotsFromCurrentMagazine==0)
+                {
+                    Components.Add(new BulletPackage(this,10,10));
                 }
             }
 

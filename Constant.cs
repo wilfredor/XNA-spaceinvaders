@@ -5,7 +5,7 @@ namespace SpaceInvaders
     public static class Constant
     {
         public const int defaultLivesQuantity = 5;
-        public const string shotsLabel = "Shots";
+        public const string shotsLabel = "Bullets";
         public const string livesLabel = "Lives";
         public const string levelLabel = "Level";
         public const string scoreLabel = "Score";
