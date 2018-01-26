@@ -68,10 +68,21 @@ namespace SpaceInvaders
 
 			currentKBState = Keyboard.GetState ();
 
-			//Check collision
-			if (Collision.checkCollision (position, Game))
-				Game.Components.Remove (this);
-
+            //Check collision
+            if (Collision.checkCollision(position, Game))
+            {
+                game.Components.Add(
+                   new Explosion(
+                       ref game,
+                       new Vector2(position.X, position.Y - nave.Height)
+                   ));
+                lives--;
+                
+            }
+            if (lives.Equals(0))
+            {
+                Game.Components.Remove(this);
+            }
 			//Movement
 			if (currentKBState.IsKeyDown (Keys.Left)) {
 				if (position.X >= 0)
@@ -108,6 +119,7 @@ namespace SpaceInvaders
 			velocity = new Vector2 (5, 5);
 			position.Y = Game.GraphicsDevice.Viewport.Height - (nave.Width + nave.Width / 2);
 			position.X = Game.GraphicsDevice.Viewport.Width / 2 - nave.Width;
+
 			limitHeight = game.GraphicsDevice.Viewport.Height - (nave.Height);
 			limitWidth = game.GraphicsDevice.Viewport.Width - (nave.Width);
 

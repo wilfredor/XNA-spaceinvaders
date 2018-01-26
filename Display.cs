@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Text;
 
 namespace SpaceInvaders
 {
-	public class Display: Microsoft.Xna.Framework.DrawableGameComponent
+    
+    public class Display: Microsoft.Xna.Framework.DrawableGameComponent
 	{
 		
 		SpriteBatch spriteBatch;
 		SpriteFont Font1;
 		Game1 game;
 
+        StringBuilder infoLabel;
 
-		public Display (Game1 game1) : base (game1)
+        public Display (Game1 game1) : base (game1)
 		{
 			this.game = game1;
 
@@ -43,27 +46,32 @@ namespace SpaceInvaders
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			Font1 = Game.Content.Load<SpriteFont>("Font");
+            
 
-			// TODO: Load your game content here            
+            // TODO: Load your game content here            
 
-		}
+        }
 
 		public override void Draw (GameTime gameTime)
 		{
-			String shotsLabel = Constant.shotsLabel + ": " + this.game.nave.numShotsFromCurrentMagazine.ToString ();
-			base.Draw (gameTime);
+            infoLabel = new StringBuilder();
+            infoLabel.Append(Constant.livesLabel).Append(": ").Append(game.nave.lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.shotsLabel).Append(": ").Append(game.nave.numShotsFromCurrentMagazine.ToString ());
+            
+
+            base.Draw (gameTime);
 
 			spriteBatch.Begin();
-			spriteBatch.DrawString(Font1, 
-									shotsLabel, 
+			spriteBatch.DrawString(Font1,
+                                    infoLabel, 
 				                   new Vector2(
-					                           Game.GraphicsDevice.Viewport.Width /1.2f  
-											   - Font1.MeasureString(shotsLabel).Length() / 2, 0
+					                           Game.GraphicsDevice.Viewport.Width /1.3f  
+											   - Font1.MeasureString(infoLabel).Length() / 25, 0
 				                              ), 
 				                   Color.White, 
 				                   0, 
-				                   new Vector2(0, Font1.MeasureString(shotsLabel).Length() / 2-Game.GraphicsDevice.Viewport.Height), 
-				                   1f, 
+				                   new Vector2(0, Font1.MeasureString(infoLabel).Length() / Game.GraphicsDevice.Viewport.Height), 
+				                   0.8f, 
 				                   SpriteEffects.None, 
 				                   0f);
 			spriteBatch.End();

@@ -46,19 +46,23 @@ namespace SpaceInvaders
 			// TODO: Add your initialization logic here
 			// Nave image.
 			gameOver = false;
+            //level map
+            Components.Add(new Map(this));
 
-		    Components.Add (new Enemie (this, 10, 10));
-		
-		    
+            //Add a enemie 
+            Components.Add (new Enemie (this, 10, 10));
+				   
 			//this.Components.Add (new Enemie (this, 1, 0));
 		    nave = new Nave (this);
 			Display display = new Display (this);
 
 			Components.Add (nave);
-			Components.Add (display);
-            
-            //bullet.Init (this);
 
+            //Label info 
+			Components.Add (display);
+
+
+            
 
             base.Initialize ();
 

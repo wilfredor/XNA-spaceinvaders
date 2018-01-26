@@ -43,7 +43,7 @@ namespace SpaceInvaders
 
             for (int i = 0; i < data.Length; ++i)
             {
-                data[i] = Color.White;
+                data[i] = color;
             }
 
             Rect = new Texture2D(game.GraphicsDevice, Constant.particleWidth, Constant.particleHeight);
@@ -51,13 +51,14 @@ namespace SpaceInvaders
 
         private void UpdateData() {
             delete = ((Rect.Width - 1) == 0) || (Rect.Height - 1 == 0);
+            color = Tool.ChangeColorBrightness(color, -0.2f);
             if (!delete)
             {
                 data = new Color[(Rect.Width - 1) * (Rect.Height - 1)];
 
                 for (int i = 0; i < data.Length; ++i)
                 {
-                    data[i] = Color.White;
+                    data[i] = color;
                 }
 
                 Rect = new Texture2D(game.GraphicsDevice, Rect.Width - 1, Rect.Height - 1);

@@ -20,21 +20,7 @@ namespace SpaceInvaders
 		{
 			return (e == typeof(Enemie));
 		}
-		//From http://stackoverflow.com/questions/3669760/iqueryable-oftypet-where-t-is-a-runtime-type
-		public static IList OfTypeToList(this IEnumerable source, Type type)
-		{
-			if (type == null)
-				throw new ArgumentNullException(nameof(type));
-			return
-				(IList) Activator.CreateInstance(
-					typeof(List<>)
-					.MakeGenericType(type),
-					typeof(System.Linq.Enumerable)
-					.GetMethod(nameof(System.Linq.Enumerable.OfType),
-						BindingFlags.Static | BindingFlags.Public)
-					.MakeGenericMethod(type)
-					.Invoke(null, new object[] { source }));
-		}
+		
 		public static Boolean checkCollision(Vector2 position, Game game) {
 
 			var enemies = game.Components.OfType<Enemie>();

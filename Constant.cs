@@ -4,8 +4,9 @@ namespace SpaceInvaders
 {
     public static class Constant
     {
-        public const int defaultLivesQuantity = 1;
+        public const int defaultLivesQuantity = 5;
         public const string shotsLabel = "Shots";
+        public const string livesLabel = "Lives";
         public const string rootContentDirectory = "Content";
 
         //Particle
