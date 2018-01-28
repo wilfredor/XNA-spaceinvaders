@@ -9,7 +9,7 @@ namespace SpaceInvaders
 		public Vector2 position = Vector2.Zero;
 		Vector2 velocity = Vector2.One;
 		private Texture2D enemie;
-		Game1 game;
+        SpaceInvaders game;
 		int originX;
 		int originY;
 		public int Width;
@@ -20,7 +20,7 @@ namespace SpaceInvaders
 		int limitWidth;
 		int numberOfTicks = 0;
 
-		public Enemie (Game1 game1,int originX,int originY) : base (game1)
+		public Enemie (SpaceInvaders game1,int originX,int originY) : base (game1)
 		{
 			this.originX = originX;
 			this.originY = originY;

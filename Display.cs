@@ -12,11 +12,11 @@ namespace SpaceInvaders
 		
 		SpriteBatch spriteBatch;
 		SpriteFont Font1;
-		Game1 game;
+        SpaceInvaders game;
 
         StringBuilder infoLabel;
 
-        public Display (Game1 game1) : base (game1)
+        public Display (SpaceInvaders game1) : base (game1)
 		{
 			this.game = game1;
 

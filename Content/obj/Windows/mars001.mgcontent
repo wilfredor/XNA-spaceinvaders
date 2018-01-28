@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/mars001.png</SourceFile>
-  <SourceTime>2018-01-25T12:07:45.0497665-05:00</SourceTime>
-  <DestFile>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bin/Windows/mars001.xnb</DestFile>
-  <DestTime>2018-01-25T14:35:06.0143981-05:00</DestTime>
+  <SourceFile>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/mars001.png</SourceFile>
+  <SourceTime>2018-01-27T22:31:13.0711519-05:00</SourceTime>
+  <DestFile>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/bin/Windows/mars001.xnb</DestFile>
+  <DestTime>2018-01-27T22:37:18.5029414-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -15,7 +15,7 @@ namespace SpaceInvaders
         public const int particleHeight = 20;
         public const int particleWidth = 20;
         public const int explosionSpeed = 5;
-        public const int explosionParticlesCount = 100;
+        public const int explosionParticlesCount = 50;
         public const int explosionParticlesSpeedRange = 4;
     }
 }

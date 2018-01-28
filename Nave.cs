@@ -14,7 +14,7 @@ namespace SpaceInvaders
 		public Vector2 position = Vector2.Zero;
 		Vector2 velocity = Vector2.One;
 		private Texture2D nave;
-		Game1 game;
+        SpaceInvaders game;
 		SpriteBatch spriteBatch;
 		KeyboardState currentKBState;
         public int Width;
@@ -24,7 +24,7 @@ namespace SpaceInvaders
 		public int lives;
 
 
-		public Nave (Game1 game1) : base (game1)
+		public Nave (SpaceInvaders game1) : base (game1)
 		{
 			this.game = game1;
 

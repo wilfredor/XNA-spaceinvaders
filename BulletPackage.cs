@@ -9,7 +9,7 @@ namespace SpaceInvaders
         public Vector2 position = Vector2.Zero;
         Vector2 velocity = Vector2.One;
         private Texture2D bulletpackage;
-        Game1 game;
+        SpaceInvaders game;
         int originX;
         int originY;
         public int Width;
@@ -22,7 +22,7 @@ namespace SpaceInvaders
         int lifeTime = 0;
         public Boolean Delete { get; set; }
 
-        public BulletPackage(Game1 game1, int originX, int originY) : base(game1)
+        public BulletPackage(SpaceInvaders game1, int originX, int originY) : base(game1)
         {            
             game = game1;
             this.originX = originX;

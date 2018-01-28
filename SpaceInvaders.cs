@@ -15,7 +15,7 @@ namespace SpaceInvaders
 	/// <summary>
 	/// This is the main type for your game.
 	/// </summary>
-	public class Game1 : Game
+	public class SpaceInvaders : Game
 	{
 
         GraphicsDeviceManager graphics;
@@ -28,7 +28,7 @@ namespace SpaceInvaders
 
         public int level;
         public int score;
-        public Game1 ()
+        public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			Content.RootDirectory = Constant.rootContentDirectory;	            

@@ -12,14 +12,14 @@ namespace SpaceInvaders
         Vector2 velocity = Vector2.One;
         private Texture2D map;
         SpriteBatch spriteBatch;
-  
-        Game1 game;
+
+        SpaceInvaders game;
 
         Color backgroundColor;
 
         private int oldLevel;
 
-        public Map(Game1 game1) : base(game1)
+        public Map(SpaceInvaders game1) : base(game1)
         {
             
             this.game = game1;

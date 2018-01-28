@@ -15,7 +15,7 @@ namespace SpaceInvaders
                
         List<Particle> listParticle;   
 
-        public Explosion(ref Game1 game, Vector2 positionBullet) : base (game)
+        public Explosion(ref SpaceInvaders game, Vector2 positionBullet) : base (game)
 		{
             this.positionBullet = positionBullet;
             //should only ever be one player, all value defaults set in Initialize()

@@ -13,11 +13,11 @@ namespace SpaceInvaders
 		private Texture2D bullet; 
 		SpriteBatch spriteBatch;
 		public Boolean delete;
-        Game1 game;
+        SpaceInvaders game;
 
 
 
-        public Bullet (ref Game1 game,Vector2 positionNave) : base (game)
+        public Bullet (ref SpaceInvaders game,Vector2 positionNave) : base (game)
 		{
 			navePosition = positionNave;
             this.game = game;
