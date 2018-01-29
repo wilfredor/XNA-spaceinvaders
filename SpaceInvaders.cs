@@ -24,7 +24,7 @@ namespace SpaceInvaders
 		private static bool gameOver;
 		public Nave nave;   
 
-        private Random rnd = new Random();
+        private Random rnd;
 
         public int level;
         public int score;
@@ -55,19 +55,20 @@ namespace SpaceInvaders
 
             //Add a enemie 
             Components.Add (new Enemie (this, 10, 10));
-				   
-			//this.Components.Add (new Enemie (this, 1, 0));
-		    nave = new Nave (this);
-			Display display = new Display (this);
 
-			Components.Add (nave);
+            //Add ship
+			Components.Add (new Nave(this));
 
             //Label info 
-			Components.Add (display);
+			Components.Add (new Display(this));
+
+            
 
             base.Initialize ();
 
-		}
+            rnd = new Random();
+
+        }
 
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
@@ -103,15 +104,35 @@ namespace SpaceInvaders
             }
 
             Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
+            Components.OfType<LivePackage>().ToList().RemoveAll(x => x.Delete);
 
+            //win bullets
             if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<BulletPackage>().Count()==0))
             {
                 nave = Components.OfType<Nave>().First();
 
                 if (nave.numShotsFromCurrentMagazine==0)
                 {
-                    Components.Add(new BulletPackage(this,10,10));
+                    Components.Add(new BulletPackage(this, rnd.Next(50, 600), rnd.Next(50, 300)));
                 }
+            }
+
+
+            //win a live
+            if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<LivePackage>().Count() == 0))
+            {
+                nave = Components.OfType<Nave>().First();
+
+                if (nave.lives == 1)
+                {
+                    Components.Add(new LivePackage(this, rnd.Next(200, 600), rnd.Next(200, 300)));
+                }
+            }
+
+            //gameover
+            if (Components.OfType<Nave>().Count() == 0)
+            {
+                Components.Add(new GameOver(this));
             }
 
             #if !__IOS__

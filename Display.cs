@@ -7,7 +7,7 @@ using System.Text;
 namespace SpaceInvaders
 {
     
-    public class Display: Microsoft.Xna.Framework.DrawableGameComponent
+    public class Display: DrawableGameComponent
 	{
 		
 		SpriteBatch spriteBatch;

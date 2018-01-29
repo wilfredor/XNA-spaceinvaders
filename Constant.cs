@@ -9,6 +9,7 @@ namespace SpaceInvaders
         public const string livesLabel = "Lives";
         public const string levelLabel = "Level";
         public const string scoreLabel = "Score";
+        public const string gameOverLabel = "GAME OVER";
         public const string rootContentDirectory = "Content";
 
         //Particle

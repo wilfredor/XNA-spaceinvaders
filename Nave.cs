@@ -70,7 +70,7 @@ namespace SpaceInvaders
 			currentKBState = Keyboard.GetState ();
 
             //Check collision
-            if (Collision.CheckCollision<Enemie>(position, Game))
+            if (Collision.CheckCollision<Enemie>(position, Game,true))
             {
                 game.Components.Add(
                    new Explosion(
@@ -78,7 +78,6 @@ namespace SpaceInvaders
                        new Vector2(position.X, position.Y - nave.Height)
                    ));
                 lives--;
-                
             }
             if (lives.Equals(0))
             {
