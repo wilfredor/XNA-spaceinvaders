@@ -133,3 +133,17 @@
 /processorParam:TextureFormat=Color
 /build:live.png
 
+#begin Fonts/INVASION2000.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/INVASION2000.spritefont
+
+#begin Fonts/ARCADECLASSIC.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ARCADECLASSIC.spritefont
+

@@ -2,9 +2,6 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Particles;
-using MonoGame.Extended;
-using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System;
 

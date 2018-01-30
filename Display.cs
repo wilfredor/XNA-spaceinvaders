@@ -12,13 +12,13 @@ namespace SpaceInvaders
 		
 		SpriteBatch spriteBatch;
 		SpriteFont Font1;
-        SpaceInvaders game;
+        SpaceInvaders Game;
 
         StringBuilder infoLabel;
 
-        public Display (SpaceInvaders game1) : base (game1)
+        public Display (SpaceInvaders game) : base (game)
 		{
-			this.game = game1;
+			Game = game;
 
 			 
 			//should only ever be one player, all value defaults set in Initialize()
@@ -36,7 +36,7 @@ namespace SpaceInvaders
 		{
 			base.LoadContent ();
 
-			spriteBatch = new SpriteBatch (this.Game.GraphicsDevice);
+			spriteBatch = new SpriteBatch (Game.GraphicsDevice);
 		}
 
 		public override void Initialize ()
@@ -45,7 +45,7 @@ namespace SpaceInvaders
 
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			Font1 = Game.Content.Load<SpriteFont>("Font");
+			Font1 = Game.Content.Load<SpriteFont>("Fonts/INVASION2000");
             
 
             // TODO: Load your game content here            
@@ -55,10 +55,10 @@ namespace SpaceInvaders
 		public override void Draw (GameTime gameTime)
 		{
             infoLabel = new StringBuilder();
-            infoLabel.Append(Constant.scoreLabel).Append(": ").Append(game.score.ToString()).Append("   ");
-            infoLabel.Append(Constant.levelLabel).Append(": ").Append(game.level.ToString()).Append("   ");
-            infoLabel.Append(Constant.livesLabel).Append(": ").Append(game.nave.lives.ToString()).Append("   ");
-            infoLabel.Append(Constant.shotsLabel).Append(": ").Append(game.nave.numShotsFromCurrentMagazine.ToString ());
+            infoLabel.Append(Constant.scoreLabel).Append(": ").Append(Game.score.ToString()).Append("   ");
+            infoLabel.Append(Constant.levelLabel).Append(": ").Append(Game.level.ToString()).Append("   ");
+            infoLabel.Append(Constant.livesLabel).Append(": ").Append(Game.nave.lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.shotsLabel).Append(": ").Append(Game.nave.numShotsFromCurrentMagazine.ToString ());
             
 
             base.Draw (gameTime);
@@ -67,13 +67,13 @@ namespace SpaceInvaders
 			spriteBatch.DrawString(Font1,
                                     infoLabel, 
 				                   new Vector2(
-					                           Game.GraphicsDevice.Viewport.Width /1.3f  
+					                           Game.GraphicsDevice.Viewport.Width /1.8f  
 											   - Font1.MeasureString(infoLabel).Length() / 2.5f, 0
 				                              ), 
 				                   Color.White, 
 				                   0, 
 				                   new Vector2(0, Font1.MeasureString(infoLabel).Length() / Game.GraphicsDevice.Viewport.Height), 
-				                   0.8f, 
+				                   1.3f, 
 				                   SpriteEffects.None, 
 				                   0f);
 			spriteBatch.End();

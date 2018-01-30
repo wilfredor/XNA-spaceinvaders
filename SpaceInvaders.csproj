@@ -67,23 +67,11 @@
     <Compile Include="Tool.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Graphics, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Particles, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Particles.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.Particles.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Tiled, Version=1.0.617.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.1.0.617\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -91,9 +79,13 @@
   <ItemGroup>
     <Content Include="Content\BasicExplosion.xml" />
     <Content Include="Content\bullet.png" />
+    <Content Include="Content\bulletpackage.png" />
     <Content Include="Content\Cloud001.png" />
     <Content Include="Content\enemie.png" />
     <Content Include="Content\enemie0.png" />
+    <Content Include="Content\live.png" />
+    <Content Include="Content\mars001.jpg" />
+    <Content Include="Content\nave.ico" />
     <Content Include="Content\nave.png" />
     <Content Include="Content\Particle004.png" />
     <Content Include="Content\Particle005.png" />
@@ -107,7 +99,6 @@
     <None Include="app.manifest" />
     <None Include="Content\Content.contentproj" />
     <None Include="Content\explosion.xnb" />
-    <None Include="Content\Font.xnb" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>

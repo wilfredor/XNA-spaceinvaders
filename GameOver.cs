@@ -16,7 +16,8 @@ namespace SpaceInvaders
         Color color;
         int Y;
         float fontSize;
-
+        float alpha;
+        Boolean rewrite;
         public GameOver(SpaceInvaders game1) : base(game1)
         {
             this.game = game1;
@@ -44,14 +45,15 @@ namespace SpaceInvaders
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Font1 = Game.Content.Load<SpriteFont>("Font");
+            Font1 = Game.Content.Load<SpriteFont>("Fonts/ARCADECLASSIC");
 
            
 
             Y = Game.GraphicsDevice.Viewport.Height / 3;
 
-
-            
+            color = Color.White;
+            alpha = 0.5f;
+            rewrite = true;
 
             // TODO: Load your game content here            
 
@@ -61,15 +63,13 @@ namespace SpaceInvaders
         {
             
             base.Draw(gameTime);
-
-            spriteBatch.Begin();
-
-            color = Tool.ChangeColorBrightness(Color.White, -255f);
-            int j = 10;
-            
-            for (double i = (Game.GraphicsDevice.Viewport.Height / 2.2); i <=Y; i++)
+            if (rewrite)
             {
-                
+                spriteBatch.Begin();
+
+
+                double i = (Game.GraphicsDevice.Viewport.Height / 2.2);
+                              
                 spriteBatch.DrawString(Font1,
                     Constant.gameOverLabel,
                     new Vector2(
@@ -78,13 +78,16 @@ namespace SpaceInvaders
                                 ),
                     color,
                     0,
-                    new Vector2(Game.GraphicsDevice.Viewport.Height / 2, Font1.MeasureString(Constant.gameOverLabel).Length() / Game.GraphicsDevice.Viewport.Height),
-                    1.5f,
+                    new Vector2(Game.GraphicsDevice.Viewport.Height / 3f, Font1.MeasureString(Constant.gameOverLabel).Length() / Game.GraphicsDevice.Viewport.Height),
+                    3f,
                     SpriteEffects.None,
                     0f);
-                color = Tool.ChangeColorBrightness(color, +0.0002f);
+                color = new Color(color, alpha);
+    
+                spriteBatch.End();
             }
-            spriteBatch.End();
+           
+            rewrite = false;
         }
     }
 }
