@@ -23,8 +23,9 @@ namespace SpaceInvaders
 
         private Random rnd;
 
-        public int level;
-        public int score;
+        public int Level;
+        public int Score;
+        public int Lives;
         
         public SpaceInvaders()
 		{
@@ -48,8 +49,9 @@ namespace SpaceInvaders
 			gameOver = false;
             //level map
             Components.Add(new Map(this));
-            level = 1;
-            score = 0;
+            Level = 1;
+            Score = 0;
+            Lives = Constant.defaultLivesQuantity;
 
             //Add a enemie 
             Components.Add (new Enemie (this, 10, 10));
@@ -94,8 +96,8 @@ namespace SpaceInvaders
             //Next Level
             if (Components.OfType<Enemie>().Count().Equals(0))
             {
-                level++;
-                for (int i = 0; i <= level; i++)
+                Level++;
+                for (int i = 0; i <= Level; i++)
                 {
                     Components.Add(new Enemie(this, rnd.Next(1, 600), rnd.Next(1, 300)));
                 }
@@ -112,7 +114,7 @@ namespace SpaceInvaders
 
                 if (nave.numShotsFromCurrentMagazine==0)
                 {
-                    Components.Add(new BulletPackage(this, rnd.Next(50, 600), rnd.Next(50, 300)));
+                    Components.Add(new BulletPackage(this));
                 }
             }
 
@@ -122,15 +124,21 @@ namespace SpaceInvaders
             {
                 nave = Components.OfType<Nave>().First();
 
-                if (nave.lives == 1)
+                if (Lives == 1)
                 {
-                    Components.Add(new LivePackage(this, rnd.Next(200, 600), rnd.Next(200, 300)));
+                    Components.Add(new LivePackage(this));
                 }
             }
 
-            //gameover
-            if (Components.OfType<Nave>().Count() == 0)
+            //wake up
+            if ((Components.OfType<Nave>().Count() == 0)&& Lives>0)
             {
+                //Add ship
+                Components.Add(new Nave(this));
+            }
+            else if (Components.OfType<Nave>().Count() == 0)
+            {
+                //gameover
                 Components.Add(new GameOver(this));
             }
 

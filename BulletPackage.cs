@@ -2,7 +2,7 @@
 {
     public class BulletPackage : Package
     {
-        public BulletPackage(SpaceInvaders game, int originX, int originY) : base(game,  originX,  originY)
+        public BulletPackage(SpaceInvaders game) : base(game)
         {
             TextureName = "bulletpackage";
         }

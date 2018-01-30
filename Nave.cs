@@ -10,9 +10,6 @@ namespace SpaceInvaders
         public int numShotsFromCurrentMagazine = 2;
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
-		KeyboardState currentKBState;
-		public int lives;
-
 
 		public Nave (SpaceInvaders game) : base (game)
 		{
@@ -30,7 +27,6 @@ namespace SpaceInvaders
 
 				numShotsFromCurrentMagazine -= 1;
 				timeSinceLastShot = 0f;
-
 			}
 
 			//no more bullets
@@ -43,19 +39,18 @@ namespace SpaceInvaders
 
 		public override void Update (GameTime gameTime)
 		{
-			MouseState state = Mouse.GetState();
+            
+            MouseState state = Mouse.GetState();
 
-			// Update our sprites position to the current cursor 
-			Position.X = state.X;
-			Position.Y = state.Y;
-
-			// Check if Right Mouse Button pressed, if so, exit
+            // Update our sprites position to the current cursor 
+            Position.X = state.X;
+            Position.Y = state.Y;
+            
+		// Check if Right Mouse Button pressed, if so, exit
 			if ((state.LeftButton == ButtonState.Pressed)&&(numShotsFromCurrentMagazine>0))
 				Shoot();
             else { timeSinceLastShot = 0f; }
-
-			currentKBState = Keyboard.GetState ();
-
+            
             //Check collision            
             if (Collision.CheckCollision<Enemie>(Position, Game,true))
             {
@@ -64,31 +59,14 @@ namespace SpaceInvaders
                        ref Game,
                        new Vector2(Position.X, Position.Y - Texture.Height)
                    ));
-                lives--;
-            }
-            if (lives.Equals(0))
-            {
+                Game.Lives--;
+
                 Game.Components.Remove(this);
+                
             }
-			//Movement
-			if (currentKBState.IsKeyDown (Keys.Left)) {
-				if (Position.X >= 0)
-                    Position.X -= Velocity.X;
-			} else if (currentKBState.IsKeyDown (Keys.Right)) {
-				if (Position.X <= LimitWidth)
-                    Position.X += Velocity.X;
-			} else if (currentKBState.IsKeyDown (Keys.Up)) {
-				if (Position.Y >= 0)
-                    Position.Y -= Velocity.Y;
-			} else if (currentKBState.IsKeyDown (Keys.Down)) {
-				if (Position.Y <= LimitHeight)
-                    Position.Y += Velocity.Y;
-			}
 
 			timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
-			//Fire
-			if (currentKBState.IsKeyDown (Keys.LeftControl))
-				Shoot();
+			
 		}
 
 		protected override void LoadContent ()
@@ -103,16 +81,21 @@ namespace SpaceInvaders
 			base.Initialize ();
 
             Texture = Game.Content.Load<Texture2D> ("nave");
+
+            InitialPosition();
+		}
+
+        public void InitialPosition()
+        {
             Velocity = new Vector2(5, 5);
             Width = Texture.Width;
-            Height = Texture.Height;            
-			Position.Y = Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2);
-			Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;
-			LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
-			LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
+            Height = Texture.Height;
+            Position.Y = Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2);
+            Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;
+            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
+            LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
 
-			lives = Constant.defaultLivesQuantity;
-		}
+        }
 
 		public override void Draw (GameTime gameTime)
 		{

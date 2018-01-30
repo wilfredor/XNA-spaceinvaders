@@ -2,14 +2,14 @@
 {
     public class LivePackage : Package
     {
-        public LivePackage(SpaceInvaders game, int originX, int originY) : base(game, originX, originY)
+        public LivePackage(SpaceInvaders game) : base(game)
         {
             TextureName = "live";
         }
 
         public override void ApplyRule()
         {
-            Game.nave.lives++;
+            Game.Lives++;
         }
     }
 }

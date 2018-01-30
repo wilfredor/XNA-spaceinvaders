@@ -55,9 +55,9 @@ namespace SpaceInvaders
 		public override void Draw (GameTime gameTime)
 		{
             infoLabel = new StringBuilder();
-            infoLabel.Append(Constant.scoreLabel).Append(": ").Append(Game.score.ToString()).Append("   ");
-            infoLabel.Append(Constant.levelLabel).Append(": ").Append(Game.level.ToString()).Append("   ");
-            infoLabel.Append(Constant.livesLabel).Append(": ").Append(Game.nave.lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.scoreLabel).Append(": ").Append(Game.Score.ToString()).Append("   ");
+            infoLabel.Append(Constant.levelLabel).Append(": ").Append(Game.Level.ToString()).Append("   ");
+            infoLabel.Append(Constant.livesLabel).Append(": ").Append(Game.Lives.ToString()).Append("   ");
             infoLabel.Append(Constant.shotsLabel).Append(": ").Append(Game.nave.numShotsFromCurrentMagazine.ToString ());
             
 

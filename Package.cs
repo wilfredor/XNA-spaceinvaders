@@ -11,6 +11,7 @@ namespace SpaceInvaders
         int directionX;
         int lifeTime = 0;
         public string TextureName;
+        private Random rnd;
         public Boolean Delete { get; set; }
 
         public Package(SpaceInvaders game, int originX, int originY) : base(game)
@@ -18,10 +19,17 @@ namespace SpaceInvaders
             Game = game;
             this.originX = originX;
             this.originY = originY;
+            rnd = new Random();
             //should only ever be one player, all value defaults set in Initialize()
         }
 
-       
+        public Package(SpaceInvaders game) : base(game)
+        {
+            rnd = new Random();
+            originX = rnd.Next(200, 600);
+            originY = rnd.Next(200, 300);
+            Game = game;
+        }
 
         private void CircularMovement(GameTime gameTime)
         {
