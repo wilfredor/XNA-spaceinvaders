@@ -12,22 +12,23 @@ using System;
 
 namespace SpaceInvaders
 {
-	/// <summary>
-	/// This is the main type for your game.
-	/// </summary>
-	public class SpaceInvaders : Game
-	{
+    /// <summary>
+    /// This is the main type for your game.
+    /// </summary>
+    public class SpaceInvaders : Game
+    {
 
         GraphicsDeviceManager graphics;
 
-		int enemySize = 100;
-		private static bool gameOver;
-		public Nave nave;   
+        int enemySize = 100;
+        private static bool gameOver;
+        public Nave nave;
 
         private Random rnd;
 
         public int level;
         public int score;
+        
         public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
@@ -105,6 +106,7 @@ namespace SpaceInvaders
 
             Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
             Components.OfType<LivePackage>().ToList().RemoveAll(x => x.Delete);
+            //Components.OfType<Enemie>().ToList().
 
             //win bullets
             if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<BulletPackage>().Count()==0))

@@ -15,8 +15,6 @@ namespace SpaceInvaders
 		public Boolean delete;
         SpaceInvaders game;
 
-
-
         public Bullet (ref SpaceInvaders game,Vector2 positionNave) : base (game)
 		{
 			navePosition = positionNave;

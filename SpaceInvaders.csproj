@@ -43,8 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bullet.cs" />
+    <Compile Include="GameObject.cs" />
     <Compile Include="GameOver.cs" />
+    <Compile Include="GraphicObject.cs" />
+    <Compile Include="IGameObject.cs" />
     <Compile Include="LivePackage.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Package.cs" />
     <Compile Include="BulletPackage.cs" />
     <Compile Include="Business\Common.cs" />

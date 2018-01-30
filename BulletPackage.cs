@@ -2,15 +2,14 @@
 {
     public class BulletPackage : Package
     {
-        public BulletPackage(SpaceInvaders game1, int originX, int originY) : base(game1,  originX,  originY)
+        public BulletPackage(SpaceInvaders game, int originX, int originY) : base(game,  originX,  originY)
         {
-            Texture = "bulletpackage";
+            TextureName = "bulletpackage";
         }
 
         public override void ApplyRule()
         {
-            game.nave.numShotsFromCurrentMagazine = 100;
+            Game.nave.numShotsFromCurrentMagazine = 100;
         }
     }
 }
-
