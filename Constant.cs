@@ -4,19 +4,19 @@ namespace SpaceInvaders
 {
     public static class Constant
     {
-        public const int defaultLivesQuantity = 5;
-        public const string shotsLabel = "Bullets";
-        public const string livesLabel = "Lives";
-        public const string levelLabel = "Level";
-        public const string scoreLabel = "SCORE";
-        public const string gameOverLabel = "GAME OVER";
-        public const string rootContentDirectory = "Content";
+        public const int DefaultLivesQuantity = 5;
+        public const string ShotsLabel = "Bullets";
+        public const string LivesLabel = "Lives";
+        public const string LevelLabel = "Level";
+        public const string ScoreLabel = "SCORE";
+        public const string GameOverLabel = "GAME OVER";
+        public const string RootContentDirectory = "Content";
 
         //Particle
-        public const int particleHeight = 20;
-        public const int particleWidth = 20;
-        public const int explosionSpeed = 5;
-        public const int explosionParticlesCount = 50;
-        public const int explosionParticlesSpeedRange = 4;
+        public const int ParticleHeight = 20;
+        public const int ParticleWidth = 20;
+        public const int ExplosionSpeed = 5;
+        public const int ExplosionParticlesCount = 50;
+        public const int ExplosionParticlesSpeedRange = 4;
     }
 }

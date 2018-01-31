@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
+    [ComVisibleAttribute(false)]
     public class Package : GameObject
     {
         int originX;
@@ -12,11 +14,11 @@ namespace SpaceInvaders
         int lifeTime = 0;
         public string TextureName;
         private Random rnd;
-        public Boolean Delete { get; set; }
+        public Boolean Delete { get; set; }       
 
         public Package(SpaceInvaders game, int originX, int originY) : base(game)
-        {            
-            Game = game;
+        {
+            GameN = game;
             this.originX = originX;
             this.originY = originY;
             rnd = new Random();
@@ -28,7 +30,7 @@ namespace SpaceInvaders
             rnd = new Random();
             originX = rnd.Next(200, 600);
             originY = rnd.Next(200, 300);
-            Game = game;
+            GameN = game;
         }
 
         private void CircularMovement(GameTime gameTime)

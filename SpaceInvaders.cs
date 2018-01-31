@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 using System;
+using System.Runtime.InteropServices;
 
 #endregion
 
@@ -12,13 +13,12 @@ namespace SpaceInvaders
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+    [ComVisibleAttribute(false)]
     public class SpaceInvaders : Game
     {
 
         GraphicsDeviceManager graphics;
 
-        int enemySize = 100;
-        private static bool gameOver;
         public Nave nave;
 
         private Random rnd;
@@ -30,7 +30,7 @@ namespace SpaceInvaders
         public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = Constant.rootContentDirectory;	            
+			Content.RootDirectory = Constant.RootContentDirectory;	            
 			graphics.IsFullScreen = false;
 
             // Create new renderer and set its graphics devide to "this" device                     
@@ -46,12 +46,12 @@ namespace SpaceInvaders
 		{
 			// TODO: Add your initialization logic here
 			// Nave image.
-			gameOver = false;
+			
             //level map
             Components.Add(new Map(this));
             Level = 1;
             Score = 0;
-            Lives = Constant.defaultLivesQuantity;
+            Lives = Constant.DefaultLivesQuantity;
 
             //Add a enemie 
             Components.Add (new Enemie (this, 10, 10));

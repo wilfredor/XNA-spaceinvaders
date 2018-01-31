@@ -51,15 +51,15 @@ namespace SpaceInvaders
             listParticle = new List<Particle>() { };
 
             //Particles Explosion generator
-            for (int i=0;i<=Constant.explosionParticlesCount; i++)
+            for (int i=0;i<=Constant.ExplosionParticlesCount; i++)
             {
                 listParticle.Add(
                     new Particle(
                         Game, positionBullet,
                         new Vector2()
                         { 
-                            X = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange),
-                            Y = rnd.Next(-1* Constant.explosionParticlesSpeedRange, Constant.explosionParticlesSpeedRange)
+                            X = rnd.Next(-1* Constant.ExplosionParticlesSpeedRange, Constant.ExplosionParticlesSpeedRange),
+                            Y = rnd.Next(-1* Constant.ExplosionParticlesSpeedRange, Constant.ExplosionParticlesSpeedRange)
                         }
                     )
 

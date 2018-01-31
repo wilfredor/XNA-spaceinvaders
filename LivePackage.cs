@@ -1,5 +1,8 @@
-﻿namespace SpaceInvaders
+﻿using System.Runtime.InteropServices;
+
+namespace SpaceInvaders
 {
+    [ComVisibleAttribute(false)]
     public class LivePackage : Package
     {
         public LivePackage(SpaceInvaders game) : base(game)
@@ -9,7 +12,7 @@
 
         public override void ApplyRule()
         {
-            Game.Lives++;
+            GameN.Lives++;
         }
     }
 }

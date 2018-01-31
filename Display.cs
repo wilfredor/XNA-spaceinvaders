@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
-    
+    [ComVisibleAttribute(false)]
     public class Display: DrawableGameComponent
 	{
 		
 		SpriteBatch spriteBatch;
 		SpriteFont Font1;
-        SpaceInvaders Game;
+        SpaceInvaders GameN;
 
         StringBuilder infoLabel;
 
         public Display (SpaceInvaders game) : base (game)
 		{
-			Game = game;
-
-			 
+			GameN = game;
 			//should only ever be one player, all value defaults set in Initialize()
 		}
-
-
 
 		public override void Update (GameTime gameTime)
 		{
@@ -55,10 +52,10 @@ namespace SpaceInvaders
 		public override void Draw (GameTime gameTime)
 		{
             infoLabel = new StringBuilder();
-            infoLabel.Append(Constant.scoreLabel).Append(": ").Append(Game.Score.ToString()).Append("   ");
-            infoLabel.Append(Constant.levelLabel).Append(": ").Append(Game.Level.ToString()).Append("   ");
-            infoLabel.Append(Constant.livesLabel).Append(": ").Append(Game.Lives.ToString()).Append("   ");
-            infoLabel.Append(Constant.shotsLabel).Append(": ").Append(Game.nave.numShotsFromCurrentMagazine.ToString ());
+            infoLabel.Append(Constant.ScoreLabel).Append(": ").Append(GameN.Score.ToString()).Append("   ");
+            infoLabel.Append(Constant.LevelLabel).Append(": ").Append(GameN.Level.ToString()).Append("   ");
+            infoLabel.Append(Constant.LivesLabel).Append(": ").Append(GameN.Lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameN.nave.numShotsFromCurrentMagazine.ToString ());
             
 
             base.Draw (gameTime);

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
-
+    [ComVisibleAttribute(false)]
     public class GameOver : DrawableGameComponent
     {
 
@@ -15,7 +16,6 @@ namespace SpaceInvaders
         SpaceInvaders game;
         Color color;
         int Y;
-        float fontSize;
         float alpha;
         Boolean rewrite;
         public GameOver(SpaceInvaders game1) : base(game1)
@@ -71,14 +71,14 @@ namespace SpaceInvaders
                 double i = (Game.GraphicsDevice.Viewport.Height / 2.2);
                               
                 spriteBatch.DrawString(Font1,
-                    Constant.gameOverLabel,
+                    Constant.GameOverLabel,
                     new Vector2(
                                 Game.GraphicsDevice.Viewport.Width
-                                - Font1.MeasureString(Constant.gameOverLabel).Length(), (float)i
+                                - Font1.MeasureString(Constant.GameOverLabel).Length(), (float)i
                                 ),
                     color,
                     0,
-                    new Vector2(Game.GraphicsDevice.Viewport.Height / 3f, Font1.MeasureString(Constant.gameOverLabel).Length() / Game.GraphicsDevice.Viewport.Height),
+                    new Vector2(Game.GraphicsDevice.Viewport.Height / 3f, Font1.MeasureString(Constant.GameOverLabel).Length() / Game.GraphicsDevice.Viewport.Height),
                     3f,
                     SpriteEffects.None,
                     0f);

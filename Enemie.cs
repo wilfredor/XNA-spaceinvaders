@@ -1,10 +1,12 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
-	public class Enemie : GameObject
+    [ComVisibleAttribute(false)]
+    public class Enemie : GameObject
     {
         int originX;
 		int originY;		

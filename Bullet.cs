@@ -72,7 +72,7 @@ namespace SpaceInvaders
 			delete = false;
 			bullet = Game.Content.Load<Texture2D> ("bullet"); 
 			velocity = new Vector2 (10, 10);
-			this.SetInitPosition (navePosition);
+			SetInitPosition (navePosition);
 		}
 
 		public override void Draw (GameTime gameTime)

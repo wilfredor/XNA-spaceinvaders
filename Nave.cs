@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
-	public class Nave: GameObject
+    [ComVisibleAttribute(false)]
+    public class Nave: GameObject
     {
 
         public int numShotsFromCurrentMagazine = 2;
@@ -20,7 +22,7 @@ namespace SpaceInvaders
 			if (timeSinceLastShot > frequenceShotSpeed) {
 				this.Game.Components.Add (
 					new Bullet (
-						ref this.Game,
+						ref GameN,
 						new Vector2(Texture.Width/2+Position.X, Position.Y)
 					)
 				);
@@ -56,12 +58,12 @@ namespace SpaceInvaders
             {
                 Game.Components.Add(
                    new Explosion(
-                       ref Game,
+                       ref GameN,
                        new Vector2(Position.X, Position.Y - Texture.Height)
                    ));
-                Game.Lives--;
+                GameN.Lives--;
 
-                Game.Components.Remove(this);
+                GameN.Components.Remove(this);
                 
             }
 

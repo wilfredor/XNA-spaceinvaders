@@ -39,14 +39,14 @@ namespace SpaceInvaders
 
             this.viewportHeight = game.GraphicsDevice.Viewport.Height;
 
-            data = new Color[Constant.particleWidth * Constant.particleHeight];
+            data = new Color[Constant.ParticleWidth * Constant.ParticleHeight];
 
             for (int i = 0; i < data.Length; ++i)
             {
                 data[i] = color;
             }
 
-            Rect = new Texture2D(game.GraphicsDevice, Constant.particleWidth, Constant.particleHeight);
+            Rect = new Texture2D(game.GraphicsDevice, Constant.ParticleWidth, Constant.ParticleHeight);
         }
 
         private void UpdateData() {
@@ -73,8 +73,8 @@ namespace SpaceInvaders
             oldY = position.Y;
             if ((position.Y <= viewportHeight) &&(position.Y>=0)&&(!delete))
             {
-                position.Y += velocity.Y * direction.Y*Constant.explosionSpeed;
-                position.X += velocity.X * direction.X*Constant.explosionSpeed;
+                position.Y += velocity.Y * direction.Y*Constant.ExplosionSpeed;
+                position.X += velocity.X * direction.X*Constant.ExplosionSpeed;
             }
             else
             {

@@ -14,5 +14,7 @@ namespace SpaceInvaders
         int LimitWidth { get; set; }    
         int Width { get; set; }
         int Height { get; set; }
+
+        GraphicObject ToGraphicObject();
     }
 }
