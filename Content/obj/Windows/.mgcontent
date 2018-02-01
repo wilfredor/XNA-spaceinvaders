@@ -4,15 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/bullet.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/enemie.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/enemie0.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/nave.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/Cloud001.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/Particle004.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/Particle005.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/bulletpackage.png</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/mars001.jpg</File>
-    <File>C:/Users/Wilfredo/Documents/Source/Repos/spaceinvaders/Content/live.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bullet.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie0.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/nave.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Cloud001.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle004.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle005.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bulletpackage.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/mars001.jpg</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/live.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Fonts/INVASION2000.spritefont</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Fonts/ARCADECLASSIC.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

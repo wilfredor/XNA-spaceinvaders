@@ -1,16 +1,18 @@
-﻿namespace SpaceInvaders
+﻿using System.Runtime.InteropServices;
+
+namespace SpaceInvaders
 {
+    [ComVisibleAttribute(false)]
     public class BulletPackage : Package
     {
-        public BulletPackage(SpaceInvaders game1, int originX, int originY) : base(game1,  originX,  originY)
+        public BulletPackage(SpaceInvaders game) : base(game)
         {
-            Texture = "bulletpackage";
+            TextureName = "bulletpackage";
         }
 
         public override void ApplyRule()
         {
-            game.nave.numShotsFromCurrentMagazine = 100;
+            GameN.nave.numShotsFromCurrentMagazine = 100;
         }
     }
 }
-

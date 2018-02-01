@@ -1,49 +1,34 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
 {
-	public class Nave: DrawableGameComponent
-	{
-		public int numShotsFromCurrentMagazine = 2;
+    [ComVisibleAttribute(false)]
+    public class Nave: GameObject
+    {
+
+        public int numShotsFromCurrentMagazine = 2;
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
 
-		public Vector2 position = Vector2.Zero;
-		Vector2 velocity = Vector2.One;
-		private Texture2D nave;
-        SpaceInvaders game;
-		SpriteBatch spriteBatch;
-		KeyboardState currentKBState;
-        public int Width;
-        public int Height;
-        int limitHeight;
-		int limitWidth;
-		public int lives;
-
-
-		public Nave (SpaceInvaders game1) : base (game1)
+		public Nave (SpaceInvaders game) : base (game)
 		{
-			this.game = game1;
-
-			//should only ever be one player, all value defaults set in Initialize()
 		}
 
 		private void Shoot(){
 			
 			if (timeSinceLastShot > frequenceShotSpeed) {
-				this.game.Components.Add (
+				this.Game.Components.Add (
 					new Bullet (
-						ref this.game,
-						new Vector2(nave.Width/2+position.X, position.Y)
+						ref GameN,
+						new Vector2(Texture.Width/2+Position.X, Position.Y)
 					)
 				);
 
 				numShotsFromCurrentMagazine -= 1;
 				timeSinceLastShot = 0f;
-
 			}
 
 			//no more bullets
@@ -56,87 +41,73 @@ namespace SpaceInvaders
 
 		public override void Update (GameTime gameTime)
 		{
-			MouseState state = Mouse.GetState();
+            
+            MouseState state = Mouse.GetState();
 
-			// Update our sprites position to the current cursor 
-			position.X = state.X;
-			position.Y = state.Y;
-
-			// Check if Right Mouse Button pressed, if so, exit
+            // Update our sprites position to the current cursor 
+            Position.X = state.X;
+            Position.Y = state.Y;
+            
+		// Check if Right Mouse Button pressed, if so, exit
 			if ((state.LeftButton == ButtonState.Pressed)&&(numShotsFromCurrentMagazine>0))
 				Shoot();
             else { timeSinceLastShot = 0f; }
-
-			currentKBState = Keyboard.GetState ();
-
-            //Check collision
-            if (Collision.CheckCollision<Enemie>(position, Game,true))
+            
+            //Check collision            
+            if (Collision.CheckCollision<Enemie>(Position, Game,true))
             {
-                game.Components.Add(
+                Game.Components.Add(
                    new Explosion(
-                       ref game,
-                       new Vector2(position.X, position.Y - nave.Height)
+                       ref GameN,
+                       new Vector2(Position.X, Position.Y - Texture.Height)
                    ));
-                lives--;
+                GameN.Lives--;
+
+                GameN.Components.Remove(this);
+                
             }
-            if (lives.Equals(0))
-            {
-                Game.Components.Remove(this);
-            }
-			//Movement
-			if (currentKBState.IsKeyDown (Keys.Left)) {
-				if (position.X >= 0)
-					position.X -= velocity.X;
-			} else if (currentKBState.IsKeyDown (Keys.Right)) {
-				if (position.X <= limitWidth)
-					position.X += velocity.X;
-			} else if (currentKBState.IsKeyDown (Keys.Up)) {
-				if (position.Y >= 0)
-					position.Y -= velocity.Y;
-			} else if (currentKBState.IsKeyDown (Keys.Down)) {
-				if (position.Y <= limitHeight)
-					position.Y += velocity.Y;
-			}
 
 			timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
-			//Fire
-			if (currentKBState.IsKeyDown (Keys.LeftControl))
-				Shoot();
+			
 		}
 
 		protected override void LoadContent ()
 		{
 			base.LoadContent ();
 
-			spriteBatch = new SpriteBatch (this.Game.GraphicsDevice);
+			SpriteBatch = new SpriteBatch (this.Game.GraphicsDevice);
 		}
 
 		public override void Initialize ()
 		{
 			base.Initialize ();
 
-			nave = Game.Content.Load<Texture2D> ("nave");
-            this.Width = nave.Width;
-            this.Height = nave.Height;
-            velocity = new Vector2 (5, 5);
-			position.Y = Game.GraphicsDevice.Viewport.Height - (nave.Width + nave.Width / 2);
-			position.X = Game.GraphicsDevice.Viewport.Width / 2 - nave.Width;
+            Texture = Game.Content.Load<Texture2D> ("nave");
 
-			limitHeight = game.GraphicsDevice.Viewport.Height - (nave.Height);
-			limitWidth = game.GraphicsDevice.Viewport.Width - (nave.Width);
-
-			lives = Constant.defaultLivesQuantity;
+            InitialPosition();
 		}
+
+        public void InitialPosition()
+        {
+            Velocity = new Vector2(5, 5);
+            Width = Texture.Width;
+            Height = Texture.Height;
+            Position.Y = Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2);
+            Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;
+            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
+            LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
+
+        }
 
 		public override void Draw (GameTime gameTime)
 		{
 			base.Draw (gameTime);
 
-			spriteBatch.Begin ();
+			SpriteBatch.Begin ();
 
-			spriteBatch.Draw (nave, position, Color.White);
+			SpriteBatch.Draw (Texture, Position, Color.White);
 
-			spriteBatch.End ();
+			SpriteBatch.End ();
 		}
 	}
 }

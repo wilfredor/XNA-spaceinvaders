@@ -15,8 +15,6 @@ namespace SpaceInvaders
 		public Boolean delete;
         SpaceInvaders game;
 
-
-
         public Bullet (ref SpaceInvaders game,Vector2 positionNave) : base (game)
 		{
 			navePosition = positionNave;
@@ -25,12 +23,10 @@ namespace SpaceInvaders
             //should only ever be one player, all value defaults set in Initialize()
         }
 
-
 		public override void Update (GameTime gameTime)
 		{
 			
 			delete = Collision.CheckCollision<Enemie>(position, Game,true);
-
 
             if (delete)
             {
@@ -39,18 +35,18 @@ namespace SpaceInvaders
                         ref this.game,
                         new Vector2(position.X, position.Y - bullet.Height)
                     ));
-                game.score++;
+                game.Score++;
                 Game.Components.Remove(this);
             }
             else
             {
                 if (((position.Y >= -bullet.Height)))
+                {
                     position.Y -= velocity.Y;
+                }
                 else
                 {
-                    //delete = true;
                     Game.Components.Remove(this);
-
                 }
                 base.Update(gameTime);
             }
@@ -58,7 +54,6 @@ namespace SpaceInvaders
 
 		private void SetInitPosition (Vector2 positionNave)
 		{
-			
 			position.Y = positionNave.Y;
 			position.X = positionNave.X;
 		}
@@ -77,7 +72,7 @@ namespace SpaceInvaders
 			delete = false;
 			bullet = Game.Content.Load<Texture2D> ("bullet"); 
 			velocity = new Vector2 (10, 10);
-			this.SetInitPosition (navePosition);
+			SetInitPosition (navePosition);
 		}
 
 		public override void Draw (GameTime gameTime)

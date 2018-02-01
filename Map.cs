@@ -59,7 +59,7 @@ namespace SpaceInvaders
             position = new Vector2(0, 0);
 
 
-            oldLevel = game.level;
+            oldLevel = game.Level;
 
             backgroundColor = Color.White;
 
@@ -69,11 +69,11 @@ namespace SpaceInvaders
         {
             base.Draw(gameTime);
             spriteBatch.Begin();
-            if (oldLevel != game.level)
+            if (oldLevel != game.Level)
             {
                 backgroundColor = Tool.ChangeColorBrightness(backgroundColor, -0.5f);
                 GraphicsDevice.Clear(backgroundColor);                
-                oldLevel = game.level;
+                oldLevel = game.Level;
             }
                        
             spriteBatch.Draw(map, position, backgroundColor);

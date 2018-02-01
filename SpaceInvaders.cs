@@ -2,36 +2,35 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Particles;
-using MonoGame.Extended;
-using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System;
+using System.Runtime.InteropServices;
 
 #endregion
 
 namespace SpaceInvaders
 {
-	/// <summary>
-	/// This is the main type for your game.
-	/// </summary>
-	public class SpaceInvaders : Game
-	{
+    /// <summary>
+    /// This is the main type for your game.
+    /// </summary>
+    [ComVisibleAttribute(false)]
+    public class SpaceInvaders : Game
+    {
 
         GraphicsDeviceManager graphics;
 
-		int enemySize = 100;
-		private static bool gameOver;
-		public Nave nave;   
+        public Nave nave;
 
         private Random rnd;
 
-        public int level;
-        public int score;
+        public int Level;
+        public int Score;
+        public int Lives;
+        
         public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
-			Content.RootDirectory = Constant.rootContentDirectory;	            
+			Content.RootDirectory = Constant.RootContentDirectory;	            
 			graphics.IsFullScreen = false;
 
             // Create new renderer and set its graphics devide to "this" device                     
@@ -47,11 +46,12 @@ namespace SpaceInvaders
 		{
 			// TODO: Add your initialization logic here
 			// Nave image.
-			gameOver = false;
+			
             //level map
             Components.Add(new Map(this));
-            level = 1;
-            score = 0;
+            Level = 1;
+            Score = 0;
+            Lives = Constant.DefaultLivesQuantity;
 
             //Add a enemie 
             Components.Add (new Enemie (this, 10, 10));
@@ -96,8 +96,8 @@ namespace SpaceInvaders
             //Next Level
             if (Components.OfType<Enemie>().Count().Equals(0))
             {
-                level++;
-                for (int i = 0; i <= level; i++)
+                Level++;
+                for (int i = 0; i <= Level; i++)
                 {
                     Components.Add(new Enemie(this, rnd.Next(1, 600), rnd.Next(1, 300)));
                 }
@@ -105,6 +105,7 @@ namespace SpaceInvaders
 
             Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
             Components.OfType<LivePackage>().ToList().RemoveAll(x => x.Delete);
+            //Components.OfType<Enemie>().ToList().
 
             //win bullets
             if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<BulletPackage>().Count()==0))
@@ -113,7 +114,7 @@ namespace SpaceInvaders
 
                 if (nave.numShotsFromCurrentMagazine==0)
                 {
-                    Components.Add(new BulletPackage(this, rnd.Next(50, 600), rnd.Next(50, 300)));
+                    Components.Add(new BulletPackage(this));
                 }
             }
 
@@ -123,15 +124,21 @@ namespace SpaceInvaders
             {
                 nave = Components.OfType<Nave>().First();
 
-                if (nave.lives == 1)
+                if (Lives == 1)
                 {
-                    Components.Add(new LivePackage(this, rnd.Next(200, 600), rnd.Next(200, 300)));
+                    Components.Add(new LivePackage(this));
                 }
             }
 
-            //gameover
-            if (Components.OfType<Nave>().Count() == 0)
+            //wake up
+            if ((Components.OfType<Nave>().Count() == 0)&& Lives>0)
             {
+                //Add ship
+                Components.Add(new Nave(this));
+            }
+            else if (Components.OfType<Nave>().Count() == 0)
+            {
+                //gameover
                 Components.Add(new GameOver(this));
             }
 

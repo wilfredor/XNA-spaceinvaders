@@ -1,15 +1,18 @@
-﻿namespace SpaceInvaders
+﻿using System.Runtime.InteropServices;
+
+namespace SpaceInvaders
 {
+    [ComVisibleAttribute(false)]
     public class LivePackage : Package
     {
-        public LivePackage(SpaceInvaders game1, int originX, int originY) : base(game1, originX, originY)
+        public LivePackage(SpaceInvaders game) : base(game)
         {
-            Texture = "live";
+            TextureName = "live";
         }
 
         public override void ApplyRule()
         {
-            game.nave.lives++;
+            GameN.Lives++;
         }
     }
 }

@@ -7,79 +7,53 @@ using System.Reflection;
 
 namespace SpaceInvaders
 {
-    internal class GraphicObject
-    {
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public float X { get; set; }
-        public float Y { get; set; }
 
-    }
     public static class Collision
     {
-
-
-        private static Boolean CheckEllementCollision(Vector2 origin, Object o)
-        {
-            GraphicObject destiny = null;
-
-            if (o.GetType() == typeof(Enemie))
-            {
-                destiny = EnemieToGraphicObject((Enemie)o);
-            }
-
-            if (o.GetType() == typeof(Nave))
-            {
-                destiny = NaveToGraphicObject((Nave)o);
-            }
+      
+        private static Boolean CheckEllementCollision(Vector2 origin, GraphicObject destiny)
+        {          
+            Boolean ellementCollision = false;
 
             if (destiny != null)
-                return ((destiny.X <= origin.X) && (origin.X <= (destiny.X + destiny.Width))) &&
+            {
+                ellementCollision = 
+                    ((destiny.X <= origin.X) && (origin.X <= (destiny.X + destiny.Width )))
+                    &&
                     ((destiny.Y <= origin.Y) && (origin.Y <= (destiny.Y + destiny.Height)));
+            }
 
-            return false;
-        }
-
-        private static GraphicObject EnemieToGraphicObject(Enemie enemie)
-        {
-            return new GraphicObject()
-            {
-                Y = enemie.position.Y,
-                X = enemie.position.X,
-                Width = enemie.Width,
-                Height = enemie.Height,
-            };
-        }
-
-        private static GraphicObject NaveToGraphicObject(Nave nave)
-        {
-            return new GraphicObject()
-            {
-                Y = nave.position.Y,
-                X = nave.position.X,
-                Width = nave.Width,
-                Height = nave.Height,
-            };
+            return ellementCollision;
         }
 
         public static Boolean CheckCollision<T>(Vector2 position, Game game, Boolean remove = false) {
 
             //Check bullet collition with Enemy
-            var objects = game.Components.OfType<T>().
-                Where(e=> CheckEllementCollision(position,e));
+            List<T> objects = game.Components.OfType<T>().
+                Where(e=> CheckEllementCollision(position, Mapper.GetGraphicObject(e))).ToList();
 
-			//For each element
-			foreach (T e in objects)
-			{	                
-                if (remove)
-				    game.Components.Remove((IGameComponent) e);
-                
-				return true;		
-			}
+            Boolean collision = (objects.Count()>0);
 
-			return false;
-
+            if (remove && collision)
+            {
+                objects.ForEach(x => game.Components.Remove((IGameComponent)x));
+            }
+           
+            return collision;
 		}
-	}
+
+        public static List<T> ElementsInCollision<T>(Vector2 position, Game game)
+        {
+            //Check bullet collition with Enemy
+            return (List<T>) game.Components.OfType<T>().
+                Where(e => CheckEllementCollision(position, Mapper.GetGraphicObject(e)));            
+        }
+
+        public static void RemoveGameElements<T>(List<T> objects, Game game)
+        {
+            objects.ForEach(x => game.Components.Remove((IGameComponent)x));
+        }
+
+    }
 }
 
