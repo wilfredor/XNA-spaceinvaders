@@ -12,7 +12,7 @@ namespace SpaceInvaders
 
         public override void ApplyRule()
         {
-            GameN.Lives++;
+            GameInfo.Lives++;
         }
     }
 }

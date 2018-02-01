@@ -85,7 +85,8 @@
     <Content Include="Content\enemie.png" />
     <Content Include="Content\enemie0.png" />
     <Content Include="Content\live.png" />
-    <Content Include="Content\mars001.jpg" />
+    <Content Include="Content\map001.jpg" />
+    <Content Include="Content\map002.jpg" />
     <Content Include="Content\nave.ico" />
     <Content Include="Content\nave.png" />
     <Content Include="Content\Particle004.png" />
@@ -100,6 +101,10 @@
     <None Include="app.manifest" />
     <None Include="Content\Content.contentproj" />
     <None Include="Content\explosion.xnb" />
+    <None Include="Content\Fonts\ARCADECLASSIC.spritefont" />
+    <None Include="Content\Fonts\ARCADECLASSIC.TTF" />
+    <None Include="Content\Fonts\INVASION2000.spritefont" />
+    <None Include="Content\Fonts\INVASION2000.TTF" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>

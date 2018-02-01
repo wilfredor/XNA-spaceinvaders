@@ -8,29 +8,26 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class Package : GameObject
     {
-        int originX;
-        int originY;
         int directionX;
         int lifeTime = 0;
         public string TextureName;
         private Random rnd;
-        public Boolean Delete { get; set; }       
+        public Boolean Delete { get; set; }
 
-        public Package(SpaceInvaders game, int originX, int originY) : base(game)
+        private Vector2 _positionPackage;
+
+        public Package(SpaceInvaders game, Vector2 positionPackage) : base(game)
         {
-            GameN = game;
-            this.originX = originX;
-            this.originY = originY;
+            _positionPackage = positionPackage;
             rnd = new Random();
             //should only ever be one player, all value defaults set in Initialize()
         }
 
         public Package(SpaceInvaders game) : base(game)
         {
+            
             rnd = new Random();
-            originX = rnd.Next(200, 600);
-            originY = rnd.Next(200, 300);
-            GameN = game;
+            _positionPackage = new Vector2(rnd.Next(200, 600), rnd.Next(200, 300));
         }
 
         private void CircularMovement(GameTime gameTime)
@@ -39,18 +36,17 @@ namespace SpaceInvaders
             float speed = 3;
             float radius = 50;
             //Center origin position x,y
-            if ((originX == LimitWidth) || (originX == 0))
+            if ((_positionPackage.X == LimitWidth) || (_positionPackage.X == 0))
             {
                 directionX *= -4;
             }
 
-            originX = originX + directionX;
+            _positionPackage = new Vector2(_positionPackage.X + directionX,0);
 
-            Vector2 origin = new Vector2(originX, 0);
-
-            Position.X = (float)(Math.Cos(time * speed) * radius + origin.X)/2;
-            Position.Y = (float)(Math.Sin(time * speed) * radius + origin.Y)*2;
-
+            Position = new Vector2(
+                (float)(Math.Cos(time * speed) * radius + _positionPackage.X) / 2,
+                (float)(Math.Sin(time * speed) * radius + _positionPackage.Y) * 2
+            );
         }
 
         public virtual void ApplyRule()
@@ -94,8 +90,12 @@ namespace SpaceInvaders
             Velocity = new Vector2(0.1f, 0.1f);
             Width = Texture.Width;
             Height = Texture.Height;
-            Position.Y = (Texture.Width + Texture.Width / 2);
-            Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;
+
+            Position = new Vector2(
+                (Texture.Width + Texture.Width / 2),
+                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width
+            );
+           
             LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
             LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
  

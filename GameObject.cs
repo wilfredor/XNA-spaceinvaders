@@ -12,11 +12,10 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class GameObject : DrawableGameComponent, IGameObject
     {
-        public Vector2 Position;        
-        public Vector2 Velocity;        
-        public SpaceInvaders GameN;
-        public Texture2D Texture;
-        public SpriteBatch SpriteBatch;
+        public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
+        public Texture2D Texture { get; set; }
+        public SpriteBatch SpriteBatch { get; set; }
 
         public int LimitHeight { get; set; }
         public int LimitWidth { get; set; }
@@ -26,7 +25,6 @@ namespace SpaceInvaders
 
         public GameObject(SpaceInvaders game) : base (game)
 		{
-            GameN = game;
             Position = Vector2.Zero;
             Velocity = Vector2.One;
         }

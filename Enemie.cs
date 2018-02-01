@@ -7,42 +7,38 @@ namespace SpaceInvaders
 {
     [ComVisibleAttribute(false)]
     public class Enemie : GameObject
-    {
-        int originX;
-		int originY;		
+    {		
 		int directionX;
+        int directionY;
+        private Vector2 _enemiePosition;
 
-		public Enemie (SpaceInvaders game,int originX,int originY) : base (game)
+        public Enemie (SpaceInvaders game, Vector2 enemiePosition) : base (game)
 		{
-			this.originX = originX;
-			this.originY = originY;
-			//should only ever be one player, all value defaults set in Initialize()
-		}
+            _enemiePosition = enemiePosition;
+            //should only ever be one player, all value defaults set in Initialize()
+        }
 
-		private void Circular(GameTime gameTime){
-
-			Random rnd = new Random();
-
-			int move = rnd.Next(8, 9);
-
-			float time = (float)gameTime.TotalGameTime.TotalSeconds; 
-			float speed = move;
-			float radius = 100;
+        private void GetOriginPosition()
+        {
+            int stepY = 0;
             //Center origin position x,y
-            if ((originX == LimitWidth) || (originX == 0))
+            if ((_enemiePosition.Y >= LimitHeight))
+            {
+                //directionY *= -1;
+                _enemiePosition.Y = 0;
+            }
+            
+            if ((_enemiePosition.X >= LimitWidth) || (_enemiePosition.X <= 0)) 
             {
                 directionX *= -1;
+                stepY = 50;
             }
 
-			originX=originX+directionX;
+            _enemiePosition = new Vector2(_enemiePosition.X + directionX, _enemiePosition.Y + stepY* directionY);
 
-			Vector2 origin = new Vector2(originX,0);
+            stepY = 0;
 
-			Position.X = (float)(Math.Cos(time * speed) * radius + origin.X);
-			Position.Y = (float)(Math.Sin(time*speed) * radius + origin.Y);
-			
-		}
-
+        }
         private void SpaceInvadersMovement(GameTime gameTime) {
 
             Random rnd = new Random();
@@ -52,15 +48,15 @@ namespace SpaceInvaders
             float speed = move;
             float radius = 10;
 
-            if ((originX == LimitWidth) || (originX == 0)) {
-                directionX *= -1;
-                originY += 50;
-            }
-            originX += directionX;
             //Center origin position x,y
-            Vector2 origin = new Vector2(originX, originY);
-            Position.Y = (float)(Math.Sin(time * speed) * radius + origin.Y);
-            Position.X = originX;
+            GetOriginPosition();
+
+
+            Position = new Vector2(
+                 _enemiePosition.X,
+                (float)(Math.Sin(time * speed) * radius + _enemiePosition.Y)
+               
+            );
         }
 
 		public override void Update (GameTime gameTime)
@@ -83,12 +79,17 @@ namespace SpaceInvaders
 			Velocity = new Vector2 (1, 1);
 			Width = Texture.Width;
 			Height = Texture.Height;
-			Position.Y = (Texture.Width + Texture.Width / 2);
-			Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;			
-			LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
+
+            Position = new Vector2(
+                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width,
+                (Texture.Width + Texture.Width / 2)                
+            );
+
+            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
 			LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
 
             directionX = 1;
+            directionY = 1;
 
         }
 

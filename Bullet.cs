@@ -13,12 +13,11 @@ namespace SpaceInvaders
 		private Texture2D bullet; 
 		SpriteBatch spriteBatch;
 		public Boolean delete;
-        SpaceInvaders game;
+     
 
-        public Bullet (ref SpaceInvaders game,Vector2 positionNave) : base (game)
+        public Bullet (Game game, Vector2 positionNave) : base (game)
 		{
 			navePosition = positionNave;
-            this.game = game;
 
             //should only ever be one player, all value defaults set in Initialize()
         }
@@ -32,10 +31,10 @@ namespace SpaceInvaders
             {
                 Game.Components.Add(
                     new Explosion(
-                        ref this.game,
+                        Game,
                         new Vector2(position.X, position.Y - bullet.Height)
                     ));
-                game.Score++;
+                GameInfo.Score++;
                 Game.Components.Remove(this);
             }
             else
@@ -62,7 +61,7 @@ namespace SpaceInvaders
 		{
 			base.LoadContent ();
 
-			spriteBatch = new SpriteBatch (this.Game.GraphicsDevice);
+			spriteBatch = new SpriteBatch (Game.GraphicsDevice);
 		}
 
 		public override void Initialize ()

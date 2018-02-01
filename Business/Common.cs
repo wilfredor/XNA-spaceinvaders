@@ -9,5 +9,6 @@ namespace SpaceInvaders
     public static class Common
     {
 
+
     }
 }

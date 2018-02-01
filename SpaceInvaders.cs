@@ -23,16 +23,14 @@ namespace SpaceInvaders
 
         private Random rnd;
 
-        public int Level;
-        public int Score;
-        public int Lives;
+     
         
         public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
 			Content.RootDirectory = Constant.RootContentDirectory;	            
 			graphics.IsFullScreen = false;
-
+            
             // Create new renderer and set its graphics devide to "this" device                     
         }
 
@@ -49,20 +47,19 @@ namespace SpaceInvaders
 			
             //level map
             Components.Add(new Map(this));
-            Level = 1;
-            Score = 0;
-            Lives = Constant.DefaultLivesQuantity;
+            GameInfo.Level = 1;
+            GameInfo.Score = 0;
+            GameInfo.Lives = Constant.DefaultLivesQuantity;
+            GameInfo.numShotsFromCurrentMagazine = Constant.DefaultShootsQuantity;
 
             //Add a enemie 
-            Components.Add (new Enemie (this, 10, 10));
+            Components.Add (new Enemie (this, new Vector2( 10, 10) ));
 
             //Add ship
 			Components.Add (new Nave(this));
 
             //Label info 
 			Components.Add (new Display(this));
-
-            
 
             base.Initialize ();
 
@@ -96,10 +93,10 @@ namespace SpaceInvaders
             //Next Level
             if (Components.OfType<Enemie>().Count().Equals(0))
             {
-                Level++;
-                for (int i = 0; i <= Level; i++)
+                GameInfo.Level++;
+                for (int i = 0; i <= GameInfo.Level; i++)
                 {
-                    Components.Add(new Enemie(this, rnd.Next(1, 600), rnd.Next(1, 300)));
+                    Components.Add(new Enemie(this, Collision.GetNoCollisionPlace(this,rnd)));
                 }
             }
 
@@ -112,7 +109,7 @@ namespace SpaceInvaders
             {
                 nave = Components.OfType<Nave>().First();
 
-                if (nave.numShotsFromCurrentMagazine==0)
+                if (GameInfo.numShotsFromCurrentMagazine==0)
                 {
                     Components.Add(new BulletPackage(this));
                 }
@@ -124,14 +121,14 @@ namespace SpaceInvaders
             {
                 nave = Components.OfType<Nave>().First();
 
-                if (Lives == 1)
+                if (GameInfo.Lives == 1)
                 {
                     Components.Add(new LivePackage(this));
                 }
             }
 
             //wake up
-            if ((Components.OfType<Nave>().Count() == 0)&& Lives>0)
+            if ((Components.OfType<Nave>().Count() == 0)&& GameInfo.Lives >0)
             {
                 //Add ship
                 Components.Add(new Nave(this));
@@ -148,17 +145,6 @@ namespace SpaceInvaders
 				Exit ();
 			}
 			#endif
-
-			//this.nave.Move (aCurrentKeyboardState);
-			//this.bullet.CheckFired (gameTime, aCurrentKeyboardState);
-			//this.bullet.Move (this);
-			/*
-			if (aCurrentKeyboardState.IsKeyDown (Keys.LeftControl)) {
-				Bullet bullet = new Bullet (nave.position,graphics);
-				bullet.fired = true;
-
-			}
-			*/
 
 			// TODO: Add your update logic here			
 			base.Update (gameTime);

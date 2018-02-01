@@ -12,7 +12,7 @@ namespace SpaceInvaders
 
         public override void ApplyRule()
         {
-            GameN.nave.numShotsFromCurrentMagazine = 100;
+            GameInfo.numShotsFromCurrentMagazine = Constant.DefaultPackageQuantity;
         }
     }
 }

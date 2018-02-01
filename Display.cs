@@ -13,13 +13,10 @@ namespace SpaceInvaders
 		
 		SpriteBatch spriteBatch;
 		SpriteFont Font1;
-        SpaceInvaders GameN;
-
         StringBuilder infoLabel;
 
-        public Display (SpaceInvaders game) : base (game)
+        public Display (Game game) : base (game)
 		{
-			GameN = game;
 			//should only ever be one player, all value defaults set in Initialize()
 		}
 
@@ -52,10 +49,10 @@ namespace SpaceInvaders
 		public override void Draw (GameTime gameTime)
 		{
             infoLabel = new StringBuilder();
-            infoLabel.Append(Constant.ScoreLabel).Append(": ").Append(GameN.Score.ToString()).Append("   ");
-            infoLabel.Append(Constant.LevelLabel).Append(": ").Append(GameN.Level.ToString()).Append("   ");
-            infoLabel.Append(Constant.LivesLabel).Append(": ").Append(GameN.Lives.ToString()).Append("   ");
-            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameN.nave.numShotsFromCurrentMagazine.ToString ());
+            infoLabel.Append(Constant.ScoreLabel).Append(": ").Append(GameInfo.Score.ToString()).Append("   ");
+            infoLabel.Append(Constant.LevelLabel).Append(": ").Append(GameInfo.Level.ToString()).Append("   ");
+            infoLabel.Append(Constant.LivesLabel).Append(": ").Append(GameInfo.Lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameInfo.numShotsFromCurrentMagazine.ToString ());
             
 
             base.Draw (gameTime);

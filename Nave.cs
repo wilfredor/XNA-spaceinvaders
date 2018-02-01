@@ -8,8 +8,6 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class Nave: GameObject
     {
-
-        public int numShotsFromCurrentMagazine = 2;
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
 
@@ -22,20 +20,20 @@ namespace SpaceInvaders
 			if (timeSinceLastShot > frequenceShotSpeed) {
 				this.Game.Components.Add (
 					new Bullet (
-						ref GameN,
+						 Game,
 						new Vector2(Texture.Width/2+Position.X, Position.Y)
 					)
 				);
 
-				numShotsFromCurrentMagazine -= 1;
+                GameInfo.numShotsFromCurrentMagazine -= 1;
 				timeSinceLastShot = 0f;
 			}
 
 			//no more bullets
-			if(numShotsFromCurrentMagazine <= 0)
+			if(GameInfo.numShotsFromCurrentMagazine <= 0)
 			{
 				timeSinceLastShot = -8f;//since magazine is empty, set accumulator to -8 so it will be 10 seconds before it gets to the required 2 and initiate the next shot
-				numShotsFromCurrentMagazine = 0;//reset the magazine.
+                GameInfo.numShotsFromCurrentMagazine = 0;//reset the magazine.
 			}
 		}
 
@@ -44,13 +42,15 @@ namespace SpaceInvaders
             
             MouseState state = Mouse.GetState();
 
-            // Update our sprites position to the current cursor 
-            Position.X = state.X;
-            Position.Y = state.Y;
-            
-		// Check if Right Mouse Button pressed, if so, exit
-			if ((state.LeftButton == ButtonState.Pressed)&&(numShotsFromCurrentMagazine>0))
-				Shoot();
+            // Update our sprites position to the current cursor        
+            Position = new Vector2(state.X, state.Y);
+
+
+            // Check if Right Mouse Button pressed, if so, exit
+            if ((state.LeftButton == ButtonState.Pressed) && (GameInfo.numShotsFromCurrentMagazine > 0))
+            {
+                Shoot();
+            }
             else { timeSinceLastShot = 0f; }
             
             //Check collision            
@@ -58,12 +58,12 @@ namespace SpaceInvaders
             {
                 Game.Components.Add(
                    new Explosion(
-                       ref GameN,
+                       Game,
                        new Vector2(Position.X, Position.Y - Texture.Height)
                    ));
-                GameN.Lives--;
+                GameInfo.Lives--;
 
-                GameN.Components.Remove(this);
+                Game.Components.Remove(this);
                 
             }
 
@@ -92,11 +92,14 @@ namespace SpaceInvaders
             Velocity = new Vector2(5, 5);
             Width = Texture.Width;
             Height = Texture.Height;
-            Position.Y = Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2);
-            Position.X = Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width;
+
+            Position = new Vector2(
+                Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2),
+                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width
+            );
+            
             LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
             LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
-
         }
 
 		public override void Draw (GameTime gameTime)
@@ -105,7 +108,7 @@ namespace SpaceInvaders
 
 			SpriteBatch.Begin ();
 
-			SpriteBatch.Draw (Texture, Position, Color.White);
+			    SpriteBatch.Draw (Texture, Position, Color.White);
 
 			SpriteBatch.End ();
 		}

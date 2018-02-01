@@ -15,7 +15,7 @@ namespace SpaceInvaders
                
         List<Particle> listParticle;   
 
-        public Explosion(ref SpaceInvaders game, Vector2 positionBullet) : base (game)
+        public Explosion(Game game, Vector2 positionBullet) : base (game)
 		{
             this.positionBullet = positionBullet;
             //should only ever be one player, all value defaults set in Initialize()
@@ -81,6 +81,11 @@ namespace SpaceInvaders
             {
                 spriteBatch.Draw(particle.Rect, particle.position, Color.White);
             }
+
+            //Message score
+            SpriteFont Font1 = Game.Content.Load<SpriteFont>("Fonts/INVASION2000");
+            spriteBatch.DrawString(Font1, "+1", positionBullet, Color.White);
+            
 
 
             spriteBatch.End();

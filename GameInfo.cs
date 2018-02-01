@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
-    public class GameInfo
+    public static class GameInfo
     {
-        /*
-        public static int lives { get { return game.nave.lives; } }
-        public static int bullets => game.nave.numShotsFromCurrentMagazine;
+        
+        public static int Bullets { get; set; }
+        public static int Level { get; set; }
+        public static int Score { get; set; }
+        public static int Lives { get; set; }
+        public static int numShotsFromCurrentMagazine { get; set; }
 
-        public static int score { get; }
-
-        Game game;
-
-        public GameInfo(Game1 game1) 
-        {
-            this.game = game1;
-        }
-        */
     }
 }

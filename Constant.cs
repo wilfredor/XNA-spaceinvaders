@@ -5,6 +5,8 @@ namespace SpaceInvaders
     public static class Constant
     {
         public const int DefaultLivesQuantity = 5;
+        public const int DefaultShootsQuantity = 15;
+        public const int DefaultPackageQuantity = 5000;
         public const string ShotsLabel = "Bullets";
         public const string LivesLabel = "Lives";
         public const string LevelLabel = "Level";
