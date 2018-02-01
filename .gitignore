@@ -5,3 +5,7 @@
 /.vs/SpaceInvaders/v15
 /Content/bin/Windows
 /bin/Windows/x86/Debug
+/obj/x86/Debug/SpaceInvaders.pdb
+/obj/x86/Debug/SpaceInvaders.exe
+/obj/x86/Debug/SpaceInvaders.csprojResolveAssemblyReference.cache
+/obj/x86/Debug/SpaceInvaders.csproj.CoreCompileInputs.cache
