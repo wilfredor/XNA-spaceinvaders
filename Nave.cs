@@ -94,12 +94,12 @@ namespace SpaceInvaders
             Height = Texture.Height;
 
             Position = new Vector2(
-                Game.GraphicsDevice.Viewport.Height - (Texture.Width + Texture.Width / 2),
-                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width
+                GameInfo.Height - (Texture.Width + Texture.Width / 2),
+                GameInfo.Width / 2 - Texture.Width
             );
             
-            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
-            LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
+            LimitHeight = GameInfo.Height - (Texture.Height);
+            LimitWidth = GameInfo.Width - (Texture.Width);
         }
 
 		public override void Draw (GameTime gameTime)

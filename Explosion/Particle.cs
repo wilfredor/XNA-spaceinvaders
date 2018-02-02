@@ -37,7 +37,7 @@ namespace SpaceInvaders
          
             delete = false;
 
-            this.viewportHeight = game.GraphicsDevice.Viewport.Height;
+            viewportHeight = GameInfo.Height;
 
             data = new Color[Constant.ParticleWidth * Constant.ParticleHeight];
 

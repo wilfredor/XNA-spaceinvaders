@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Text;
 
 namespace SpaceInvaders
 {
@@ -20,5 +21,15 @@ namespace SpaceInvaders
         public const int ExplosionSpeed = 5;
         public const int ExplosionParticlesCount = 50;
         public const int ExplosionParticlesSpeedRange = 4;
+
+        //Main bar info
+        public static StringBuilder InfoBar() {
+            StringBuilder infoLabel = new StringBuilder();
+            infoLabel.Append(Constant.ScoreLabel).Append(": ").Append(GameInfo.Score.ToString()).Append("   ");
+            infoLabel.Append(Constant.LevelLabel).Append(": ").Append(GameInfo.Level.ToString()).Append("   ");
+            infoLabel.Append(Constant.LivesLabel).Append(": ").Append(GameInfo.Lives.ToString()).Append("   ");
+            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameInfo.numShotsFromCurrentMagazine.ToString());
+            return infoLabel;
+        }
     }
 }

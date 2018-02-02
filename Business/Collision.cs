@@ -7,7 +7,9 @@ using System.Reflection;
 
 namespace SpaceInvaders
 {
-
+    /// <summary>
+    /// Collision element class, check if a element is in collision 
+    /// </summary>
     public static class Collision
     {
 
@@ -56,19 +58,12 @@ namespace SpaceInvaders
             return GetNoCollisionPlace(game,new Random());
          }
             
-            
-
         public static List<T> ElementsInCollision<T>(Vector2 position, Game game)
         {
             //Check bullet collition with Enemy
             return (List<T>) game.Components.OfType<T>().
                 Where(e => CheckEllementCollision(position, Mapper.GetGraphicObject(e)));            
-        }
-
-        public static void RemoveGameElements<T>(List<T> objects, Game game)
-        {
-            objects.ForEach(x => game.Components.Remove((IGameComponent)x));
-        }
+        }       
 
     }
 }

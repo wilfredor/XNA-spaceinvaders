@@ -33,7 +33,7 @@ namespace SpaceInvaders
         public override void Update(GameTime gameTime)
         {
 
-            if (((position.Y >= -(map.Height-Game.GraphicsDevice.Viewport.Height))))
+            if (((position.Y >= -(map.Height-GameInfo.Height))))
                 position.Y -= velocity.Y;
             else
             {

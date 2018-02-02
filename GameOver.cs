@@ -25,7 +25,7 @@ namespace SpaceInvaders
 
         public override void Update(GameTime gameTime)
         {
-            if (Y <= Game.GraphicsDevice.Viewport.Height / 2)
+            if (Y <= GameInfo.Height/ 2)
             {
                 Y++;
             }
@@ -49,7 +49,7 @@ namespace SpaceInvaders
 
            
 
-            Y = Game.GraphicsDevice.Viewport.Height / 3;
+            Y = GameInfo.Height / 3;
 
             color = Color.White;
             alpha = 0.5f;
@@ -68,7 +68,7 @@ namespace SpaceInvaders
                 spriteBatch.Begin();
 
 
-                double i = (Game.GraphicsDevice.Viewport.Height / 2.2);
+                double i = (GameInfo.Height / 2.2);
                               
                 spriteBatch.DrawString(Font1,
                     Constant.GameOverLabel,
@@ -78,7 +78,7 @@ namespace SpaceInvaders
                                 ),
                     color,
                     0,
-                    new Vector2(Game.GraphicsDevice.Viewport.Height / 3f, Font1.MeasureString(Constant.GameOverLabel).Length() / Game.GraphicsDevice.Viewport.Height),
+                    new Vector2(GameInfo.Height / 3f, Font1.MeasureString(Constant.GameOverLabel).Length() / GameInfo.Height),
                     3f,
                     SpriteEffects.None,
                     0f);

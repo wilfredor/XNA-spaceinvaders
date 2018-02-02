@@ -23,8 +23,6 @@ namespace SpaceInvaders
 
         private Random rnd;
 
-     
-        
         public SpaceInvaders()
 		{
 			graphics = new GraphicsDeviceManager (this);
@@ -51,6 +49,8 @@ namespace SpaceInvaders
             GameInfo.Score = 0;
             GameInfo.Lives = Constant.DefaultLivesQuantity;
             GameInfo.numShotsFromCurrentMagazine = Constant.DefaultShootsQuantity;
+            GameInfo.Height = GraphicsDevice.Viewport.Height;
+            GameInfo.Width = GraphicsDevice.Viewport.Width;
 
             //Add a enemie 
             Components.Add (new Enemie (this, new Vector2( 10, 10) ));

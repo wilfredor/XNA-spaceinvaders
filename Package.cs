@@ -96,8 +96,8 @@ namespace SpaceInvaders
                 Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width
             );
            
-            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
-            LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
+            LimitHeight = GameInfo.Height - (Texture.Height);
+            LimitWidth = GameInfo.Width - (Texture.Width);
  
             directionX = 1;
 

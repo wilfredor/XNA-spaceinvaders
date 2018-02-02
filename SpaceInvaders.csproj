@@ -55,7 +55,7 @@
     <Compile Include="Business\Common.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Explosion\Explosion.cs" />
-    <Compile Include="Collision.cs" />
+    <Compile Include="Business\Collision.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Enemie.cs" />
     <Compile Include="Explosion\Particle.cs" />

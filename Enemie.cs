@@ -8,67 +8,71 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class Enemie : GameObject
     {		
-		int directionX;
-        int directionY;
-        private Vector2 _enemiePosition;
+		private int _directionX;
+        public Vector2 _position4;
 
         public Enemie (SpaceInvaders game, Vector2 enemiePosition) : base (game)
 		{
-            _enemiePosition = enemiePosition;
-            //should only ever be one player, all value defaults set in Initialize()
+            _position4 = enemiePosition;
         }
 
-        private void GetOriginPosition()
+        private Boolean IsBorderX(int positionX, int limitWidth)
         {
-            int stepY = 0;
-            //Center origin position x,y
-            if ((_enemiePosition.Y >= LimitHeight))
-            {
-                //directionY *= -1;
-                _enemiePosition.Y = 0;
-            }
-            
-            if ((_enemiePosition.X >= LimitWidth) || (_enemiePosition.X <= 0)) 
-            {
-                directionX *= -1;
-                stepY = 50;
-            }
-
-            _enemiePosition = new Vector2(_enemiePosition.X + directionX, _enemiePosition.Y + stepY* directionY);
-
-            stepY = 0;
-
+            return (positionX >= limitWidth) || (positionX <= 0);
         }
-        private void SpaceInvadersMovement(GameTime gameTime) {
+
+        private Boolean IsBorderY(int positionY, int limitHeight)
+        {
+            return (positionY >= limitHeight);
+        }
+
+        private Vector2 SpaceInvadersMovement(GameTime gameTime, float X, float Y, int limitX, int limitY) {
 
             Random rnd = new Random();
-            int move = rnd.Next(8, 9); // speed
+            
+            Vector2 _position = new Vector2(X, Y);
 
             float time = (float)gameTime.TotalGameTime.TotalSeconds;
-            float speed = move;
-            float radius = 10;
-
+                       
             //Center origin position x,y
-            GetOriginPosition();
+            if (IsBorderY((int)_position.Y, limitY))
+            {
+                _position.Y = 0;
+            }
+
+            if (IsBorderX((int)_position.X, limitX))
+            {
+                //Change movement to back (-1) or forward (1) if the Enemi is in the border X
+                _directionX *= -1;
+            }
+
+            _position.Y += 0.1f;
+
+            Vector2 _position2 = new Vector2(_position.X + _directionX, _position.Y);
 
 
-            Position = new Vector2(
-                 _enemiePosition.X,
-                (float)(Math.Sin(time * speed) * radius + _enemiePosition.Y)
+            return new Vector2(
+                 _position2.X,
+                (float)(Math.Sin(time * 5) * 10 + _position2.Y)
                
             );
         }
 
 		public override void Update (GameTime gameTime)
-		{			
-			SpaceInvadersMovement (gameTime);
-		}
+		{
+            Vector2 tempPosition = SpaceInvadersMovement(gameTime, Position.X, Position.Y, LimitWidth, LimitHeight);
+            Position.X = tempPosition.X;
+            Position.Y = tempPosition.Y;
+
+
+
+        }
 
 		protected override void LoadContent ()
 		{
 			base.LoadContent ();
 
-			SpriteBatch = new SpriteBatch (this.Game.GraphicsDevice);
+			SpriteBatch = new SpriteBatch (Game.GraphicsDevice);
 		}
 
 		public override void Initialize ()
@@ -81,15 +85,14 @@ namespace SpaceInvaders
 			Height = Texture.Height;
 
             Position = new Vector2(
-                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width,
-                (Texture.Width + Texture.Width / 2)                
+                GameInfo.Width / 2 - Texture.Width,
+                (Texture.Width + Texture.Width / 2)
             );
 
-            LimitHeight = Game.GraphicsDevice.Viewport.Height - (Texture.Height);
-			LimitWidth = Game.GraphicsDevice.Viewport.Width - (Texture.Width);
+            LimitHeight = GameInfo.Height - (Texture.Height);
+			LimitWidth = GameInfo.Width - (Texture.Width);
 
-            directionX = 1;
-            directionY = 1;
+            _directionX = 1;
 
         }
 
