@@ -48,7 +48,7 @@ namespace SpaceInvaders
             GameInfo.Level = 1;
             GameInfo.Score = 0;
             GameInfo.Lives = Constant.DefaultLivesQuantity;
-            GameInfo.numShotsFromCurrentMagazine = Constant.DefaultShootsQuantity;
+            GameInfo.Shots = Constant.DefaultShootsQuantity;
             GameInfo.Height = GraphicsDevice.Viewport.Height;
             GameInfo.Width = GraphicsDevice.Viewport.Width;
 
@@ -56,7 +56,7 @@ namespace SpaceInvaders
             Components.Add (new Enemie (this, new Vector2( 10, 10) ));
 
             //Add ship
-			Components.Add (new Nave(this));
+			Components.Add (nave = new Nave(this));
 
             //Label info 
 			Components.Add (new Display(this));
@@ -105,21 +105,21 @@ namespace SpaceInvaders
             //Components.OfType<Enemie>().ToList().
 
             //win bullets
-            if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<BulletPackage>().Count()==0))
+            if (Components.OfType<BulletPackage>().Count() == 0)
             {
-                nave = Components.OfType<Nave>().First();
 
-                if (GameInfo.numShotsFromCurrentMagazine==0)
+
+                if (GameInfo.Shots == 0)
                 {
                     Components.Add(new BulletPackage(this));
                 }
+
             }
 
-
             //win a live
-            if ((Components.OfType<Nave>().Count() > 0) && (Components.OfType<LivePackage>().Count() == 0))
+            if (Components.OfType<LivePackage>().Count() == 0)
             {
-                nave = Components.OfType<Nave>().First();
+                
 
                 if (GameInfo.Lives == 1)
                 {
@@ -158,11 +158,6 @@ namespace SpaceInvaders
 		{
 
 			graphics.GraphicsDevice.Clear (Color.Black);
-
-			//this.nave.Draw (spriteBatch);
-			//this.bullet.Draw (spriteBatch);
-		
-			//TODO: Add your drawing code here
             
 			base.Draw (gameTime);
 

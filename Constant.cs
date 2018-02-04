@@ -28,7 +28,7 @@ namespace SpaceInvaders
             infoLabel.Append(Constant.ScoreLabel).Append(": ").Append(GameInfo.Score.ToString()).Append("   ");
             infoLabel.Append(Constant.LevelLabel).Append(": ").Append(GameInfo.Level.ToString()).Append("   ");
             infoLabel.Append(Constant.LivesLabel).Append(": ").Append(GameInfo.Lives.ToString()).Append("   ");
-            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameInfo.numShotsFromCurrentMagazine.ToString());
+            infoLabel.Append(Constant.ShotsLabel).Append(": ").Append(GameInfo.Shots.ToString());
             return infoLabel;
         }
     }

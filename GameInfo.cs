@@ -14,7 +14,7 @@ namespace SpaceInvaders
         public static int Level { get; set; }
         public static int Score { get; set; }
         public static int Lives { get; set; }
-        public static int numShotsFromCurrentMagazine { get; set; }
+        public static int Shots { get; set; }
         public static int Height { get; set; }
         public static int Width { get; set; }
 

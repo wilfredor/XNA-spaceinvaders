@@ -25,15 +25,15 @@ namespace SpaceInvaders
 					)
 				);
 
-                GameInfo.numShotsFromCurrentMagazine -= 1;
+                GameInfo.Shots -= 1;
 				timeSinceLastShot = 0f;
 			}
 
 			//no more bullets
-			if(GameInfo.numShotsFromCurrentMagazine <= 0)
+			if(GameInfo.Shots <= 0)
 			{
 				timeSinceLastShot = -8f;//since magazine is empty, set accumulator to -8 so it will be 10 seconds before it gets to the required 2 and initiate the next shot
-                GameInfo.numShotsFromCurrentMagazine = 0;//reset the magazine.
+                GameInfo.Shots = 0;//reset the magazine.
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace SpaceInvaders
 
 
             // Check if Right Mouse Button pressed, if so, exit
-            if ((state.LeftButton == ButtonState.Pressed) && (GameInfo.numShotsFromCurrentMagazine > 0))
+            if ((state.LeftButton == ButtonState.Pressed) && (GameInfo.Shots > 0))
             {
                 Shoot();
             }

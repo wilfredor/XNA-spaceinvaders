@@ -37,17 +37,17 @@ namespace SpaceInvaders
 			base.Initialize ();
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			Font = Game.Content.Load<SpriteFont>("Fonts/INVASION2000");
-            mainBarText = Constant.InfoBar();
         }
 
 		public override void Draw (GameTime gameTime)
 		{
+            mainBarText = Constant.InfoBar();
 
             base.Draw (gameTime);
 
 			spriteBatch.Begin();
 
-            spriteBatch.DrawString(Font, mainBarText, new Vector2(0, Common.MainBarPosition(Font,mainBarText)), Color.White);
+            spriteBatch.DrawString(Font, mainBarText, new Vector2(0, Common.MainBarPosition(Font, mainBarText)), Color.White);
 
 			spriteBatch.End();
 		}
