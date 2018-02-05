@@ -59,11 +59,9 @@ namespace SpaceInvaders
 
             Vector2 _position2 = new Vector2(_position.X + _directionX, _position.Y);
 
-
             return new Vector2(
                  _position2.X,
                 (float)(Math.Sin(time * 5) * 2 + _position2.Y)
-
             );
         }
 

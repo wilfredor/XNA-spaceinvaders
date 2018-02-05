@@ -7,7 +7,7 @@ namespace SpaceInvaders
     {
         public BulletPackage(SpaceInvaders game) : base(game)
         {
-            TextureName = "bulletpackage";
+            TextureName = Constant.BulletsPath + "bulletpackage";
         }
 
         public override void ApplyRule()

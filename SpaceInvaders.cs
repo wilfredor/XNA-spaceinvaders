@@ -107,8 +107,6 @@ namespace SpaceInvaders
             //win bullets
             if (Components.OfType<BulletPackage>().Count() == 0)
             {
-
-
                 if (GameInfo.Shots == 0)
                 {
                     Components.Add(new BulletPackage(this));

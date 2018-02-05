@@ -67,7 +67,7 @@ namespace SpaceInvaders
              
             }
                           
-            if (Collision.CheckCollision<Nave>(Position, Game))
+            if (Collision.CheckCollision<Nave>(Position, Game).Count>0)
             {
                 ApplyRule();
                 Game.Components.Remove(this);

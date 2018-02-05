@@ -13,11 +13,14 @@ namespace SpaceInvaders
                 
         SpriteBatch spriteBatch;
                
-        List<Particle> listParticle;   
+        List<Particle> listParticle;
 
-        public Explosion(Game game, Vector2 positionBullet) : base (game)
+        int? Score;
+
+        public Explosion(Game game, Vector2 positionBullet, int? Score = null) : base (game)
 		{
             this.positionBullet = positionBullet;
+            this.Score = Score;
             //should only ever be one player, all value defaults set in Initialize()
         }
 
@@ -83,11 +86,12 @@ namespace SpaceInvaders
             }
 
             //Message score
-            SpriteFont Font1 = Game.Content.Load<SpriteFont>("Fonts/INVASION2000");
-            spriteBatch.DrawString(Font1, "+1", positionBullet, Color.White);
+            if (Score.HasValue)
+            {
+                SpriteFont Font1 = Game.Content.Load<SpriteFont>(Constant.FontsPath+"INVASION2000");
+                spriteBatch.DrawString(Font1, "+"+Score.ToString(), positionBullet, Color.White);
+            }
             
-
-
             spriteBatch.End();
         }
 

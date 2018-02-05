@@ -17,6 +17,8 @@ namespace SpaceInvaders
         public Texture2D Texture { get; set; }
         public SpriteBatch SpriteBatch { get; set; }
 
+        public int Lives { get; set; }
+
         public int LimitHeight { get; set; }
         public int LimitWidth { get; set; }
         

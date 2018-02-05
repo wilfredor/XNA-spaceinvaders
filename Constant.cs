@@ -22,6 +22,16 @@ namespace SpaceInvaders
         public const int ExplosionParticlesCount = 50;
         public const int ExplosionParticlesSpeedRange = 4;
 
+        //Paths
+        public const string EnemiesPath = "enemies\\";
+        public const string BulletsPath = "bullets\\";
+        public const string ExplosionPath = "explosion\\";
+        public const string MapsPath = "maps\\";
+        public const string NavesPath = "naves\\";
+        public const string ParticlesPath = "particles\\";
+        public const string FontsPath = "fonts\\";
+
+
         //Main bar info
         public static StringBuilder InfoBar() {
             StringBuilder infoLabel = new StringBuilder();

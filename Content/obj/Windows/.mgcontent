@@ -4,18 +4,23 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bullet.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemie0.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/nave.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Cloud001.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle004.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particle005.png</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/bulletpackage.png</File>
     <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/live.png</File>
     <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Fonts/INVASION2000.spritefont</File>
     <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Fonts/ARCADECLASSIC.spritefont</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/map001.jpg</File>
-    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/map002.jpg</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Bullets/bullet.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Bullets/bulletpackage.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Maps/map001.jpg</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Maps/map002.jpg</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Naves/nave.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Naves/nave1.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particles/Cloud001.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/Particles/Particle004.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie0.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie1.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie2.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie3.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie4.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie5.png</File>
+    <File>C:/Users/Interne/Documents/Source/Repos/spaceinvaders/Content/enemies/enemie6.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -8,32 +8,42 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class Enemie : GameObject
     {		
-		private int _directionX;
-      
+		private int _directionX;        
 
-        public Enemie (SpaceInvaders game, Vector2 enemiePosition) : base (game)
+        public Enemie (SpaceInvaders Game, Vector2 Position) : base (Game)
 		{
-            Position = enemiePosition;
+            this.Position = Position;
         }
 
 		public override void Update (GameTime gameTime)
 		{
             Position = Common.SpaceInvadersMovement(gameTime, Position, ref _directionX, LimitWidth, LimitHeight);
-
+            //New level and new strong Enemi level too            
         }
 
 		protected override void LoadContent ()
 		{
 			base.LoadContent ();
-
 			SpriteBatch = new SpriteBatch (Game.GraphicsDevice);
 		}
+
+        public void SetTexture(String textureName = "enemie0")
+        {
+            //You will find more textures here http://millionthvector.blogspot.ca/2013/07/free-alien-top-down-spaceship-sprites.html                           
+            Texture = Game.Content.Load<Texture2D>(Constant.EnemiesPath + textureName);
+        }
+
+        public void SetLive()
+        {
+            Lives = GameInfo.Level;
+        }
 
 		public override void Initialize ()
 		{
 			base.Initialize ();
 
-            Texture = Game.Content.Load<Texture2D> ("enemie0"); 
+            SetTexture();
+            
 			Velocity = new Vector2 (1, 1);
 			Width = Texture.Width;
 			Height = Texture.Height;
@@ -42,6 +52,7 @@ namespace SpaceInvaders
 			LimitWidth = GameInfo.Width - (Texture.Width);
 
             _directionX = 1;
+            SetLive();
 
         }
 

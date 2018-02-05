@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Linq;
+using System.Collections.Generic;
+
 namespace SpaceInvaders
 {
 	public class Bullet : DrawableGameComponent
@@ -31,18 +33,33 @@ namespace SpaceInvaders
             Game.Components.Remove(this);
         }
 
+        private Explosion DestroyEnemie(IGameComponent enemie)
+        {
+            Game.Components.Remove((IGameComponent)enemie);
+            GameInfo.Score+= GameInfo.Level;
+            return new Explosion(Game, new Vector2(Position.X, Position.Y - Texture.Height), GameInfo.Level);
+        }
+
 		public override void Update (GameTime gameTime)
-		{			
-			Delete = Collision.CheckCollision<Enemie>(Position, Game,true);
+		{
+            List<Enemie> listEnemie = Collision.CheckCollision<Enemie>(Position, Game);//,true);
+
+            Delete = (listEnemie.Count > 0);
 
             if (Delete)
             {
                 Game.Components.Add(BulletExplosion());
-                GameInfo.Score++;
+                //Remove Lives
+                listEnemie.ForEach(x => x.Lives-=1);
+                //Remove the Enemie from the game if Live <=0
+                listEnemie.Where(e => (e.Lives <= 0)).ToList().ForEach(x => Game.Components.Add(DestroyEnemie(x)));
+
                 DestroyMe();
+
             }
             else if (Common.IsBulletOutOfRange(this))
             {
+                _velocity.Y++; 
                 Position.Y -= _velocity.Y;
             }
             else
@@ -72,8 +89,8 @@ namespace SpaceInvaders
 			base.Initialize ();
             Position = Vector2.Zero;
             Delete = false;
-			Texture = Game.Content.Load<Texture2D> ("bullet"); 
-			_velocity = new Vector2 (10, 10);            
+			Texture = Game.Content.Load<Texture2D> (Constant.BulletsPath + "bullet"); 
+			_velocity = new Vector2 (0.1f, 0.1f);            
             SetInitPosition (_navePosition);
 		}
 

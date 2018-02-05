@@ -28,20 +28,15 @@ namespace SpaceInvaders
             return ellementCollision;
         }
 
-        public static Boolean CheckCollision<T>(Vector2 position, Game game, Boolean remove = false) {
+        public static List<T> CheckCollision<T>(Vector2 position, Game game){
 
             //Check bullet collition with Enemy
             List<T> objects = game.Components.OfType<T>().
-                Where(e => CheckEllementCollision(position, Mapper.GetGraphicObject(e))).ToList();
+                Where(
+                      e => CheckEllementCollision(position, (Mapper.GetGraphicObject(e)))
+                     ).ToList();
 
-            Boolean collision = (objects.Count() > 0);
-
-            if (remove && collision)
-            {
-                objects.ForEach(x => game.Components.Remove((IGameComponent)x));
-            }
-
-            return collision;
+            return objects;
         }
 
         public static Vector2 GetNoCollisionPlace(Game game, Random rnd)
@@ -50,7 +45,7 @@ namespace SpaceInvaders
             noCollisionPlace.X = rnd.Next(10, 600);
             noCollisionPlace.Y = rnd.Next(10, 50*GameInfo.Level);
 
-            if (!CheckCollision<Enemie>(noCollisionPlace, game))
+            if (CheckCollision<Enemie>(noCollisionPlace, game).Count()<=0)
             {
                 return noCollisionPlace;
             }

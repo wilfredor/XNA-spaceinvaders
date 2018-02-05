@@ -43,7 +43,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bullet.cs" />
+    <Compile Include="Bullets\Bullet.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameOver.cs" />
     <Compile Include="GraphicObject.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="LivePackage.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="Package.cs" />
-    <Compile Include="BulletPackage.cs" />
+    <Compile Include="Bullets\BulletPackage.cs" />
     <Compile Include="Business\Common.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Explosion\Explosion.cs" />
@@ -79,18 +79,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\BasicExplosion.xml" />
-    <Content Include="Content\bullet.png" />
-    <Content Include="Content\bulletpackage.png" />
-    <Content Include="Content\Cloud001.png" />
-    <Content Include="Content\enemie.png" />
-    <Content Include="Content\enemie0.png" />
+    <Content Include="Content\Bullets\bullet.png" />
+    <Content Include="Content\Bullets\bulletpackage.png" />
+    <Content Include="Content\enemies\enemie0.png" />
+    <Content Include="Content\enemies\enemie1.png" />
+    <Content Include="Content\enemies\enemie2.png" />
+    <Content Include="Content\enemies\enemie3.png" />
+    <Content Include="Content\enemies\enemie4.png" />
+    <Content Include="Content\enemies\enemie5.png" />
+    <Content Include="Content\enemies\enemie6.png" />
     <Content Include="Content\live.png" />
-    <Content Include="Content\map001.jpg" />
-    <Content Include="Content\map002.jpg" />
-    <Content Include="Content\nave.ico" />
-    <Content Include="Content\nave.png" />
-    <Content Include="Content\Particle004.png" />
-    <Content Include="Content\Particle005.png" />
+    <Content Include="Content\Maps\map001.jpg" />
+    <Content Include="Content\Maps\map002.jpg" />
+    <Content Include="Content\Naves\nave.png" />
+    <Content Include="Content\Naves\nave1.png" />
+    <Content Include="Content\Particles\Cloud001.png" />
+    <Content Include="Content\Particles\Particle004.png" />
     <Content Include="Icon.ico" />
     <Content Include="Icon.png" />
     <Content Include="nave.ico" />

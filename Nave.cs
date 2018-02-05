@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace SpaceInvaders
@@ -10,6 +12,7 @@ namespace SpaceInvaders
     {
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
+        Boolean Delete;
 
 		public Nave (SpaceInvaders game) : base (game)
 		{
@@ -52,9 +55,13 @@ namespace SpaceInvaders
                 Shoot();
             }
             else { timeSinceLastShot = 0f; }
-            
+
+            List<Enemie> listEnemie = Collision.CheckCollision<Enemie>(Position, Game);//,true);
+
+            Delete = (listEnemie.Count > 0);
+
             //Check collision            
-            if (Collision.CheckCollision<Enemie>(Position, Game,true))
+            if (Delete)
             {
                 Game.Components.Add(
                    new Explosion(
@@ -62,8 +69,10 @@ namespace SpaceInvaders
                        new Vector2(Position.X, Position.Y - Texture.Height)
                    ));
                 GameInfo.Lives--;
-
-                Game.Components.Remove(this);
+                if (GameInfo.Lives <= 0)
+                {
+                    Game.Components.Remove(this);
+                }
                 
             }
 
@@ -82,7 +91,9 @@ namespace SpaceInvaders
 		{
 			base.Initialize ();
 
-            Texture = Game.Content.Load<Texture2D> ("nave");
+            Texture = Game.Content.Load<Texture2D> (Constant.NavesPath + "nave");
+
+            Delete = false;
 
             InitialPosition();
 		}
@@ -93,11 +104,6 @@ namespace SpaceInvaders
             Width = Texture.Width;
             Height = Texture.Height;
 
-            Position = new Vector2(
-                GameInfo.Height - (Texture.Width + Texture.Width / 2),
-                GameInfo.Width / 2 - Texture.Width
-            );
-            
             LimitHeight = GameInfo.Height - (Texture.Height);
             LimitWidth = GameInfo.Width - (Texture.Width);
         }

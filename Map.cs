@@ -35,7 +35,6 @@ namespace SpaceInvaders
             else
             {
                 position = new Vector2(0, 0);
-
             }
             base.Update(gameTime);
             
@@ -53,7 +52,7 @@ namespace SpaceInvaders
         {
             base.Initialize();
             
-            map = Game.Content.Load<Texture2D>("map001");
+            map = Game.Content.Load<Texture2D>(Constant.MapsPath + "map001");
             velocity = new Vector2(5, 5);
             position = new Vector2(0, 0);
 
@@ -86,7 +85,7 @@ namespace SpaceInvaders
 
             if (GameInfo.Level == 5)
             {
-                map = Game.Content.Load<Texture2D>("map002");
+                map = Game.Content.Load<Texture2D>(Constant.MapsPath + "map002");
             }
                        
             spriteBatch.Draw(map, position, backgroundColor);
