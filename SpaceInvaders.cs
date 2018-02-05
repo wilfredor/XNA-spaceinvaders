@@ -105,7 +105,7 @@ namespace SpaceInvaders
             //Components.OfType<Enemie>().ToList().
 
             //win bullets
-            if (Components.OfType<BulletPackage>().Count() == 0)
+            if (Components.OfType<BulletPackage>().Count().Equals(0))
             {
                 if (GameInfo.Shots == 0)
                 {
@@ -115,10 +115,8 @@ namespace SpaceInvaders
             }
 
             //win a live
-            if (Components.OfType<LivePackage>().Count() == 0)
+            if (Components.OfType<LivePackage>().Count().Equals(0))
             {
-                
-
                 if (GameInfo.Lives == 1)
                 {
                     Components.Add(new LivePackage(this));
@@ -126,12 +124,12 @@ namespace SpaceInvaders
             }
 
             //wake up
-            if ((Components.OfType<Nave>().Count() == 0)&& GameInfo.Lives >0)
+            if ((Components.OfType<Nave>().Count().Equals(0)) && GameInfo.Lives >0)
             {
                 //Add ship
                 Components.Add(new Nave(this));
             }
-            else if (Components.OfType<Nave>().Count() == 0)
+            else if (Components.OfType<Nave>().Count().Equals(0))
             {
                 //gameover
                 Components.Add(new GameOver(this));

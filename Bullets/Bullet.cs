@@ -59,7 +59,7 @@ namespace SpaceInvaders
             }
             else if (Common.IsBulletOutOfRange(this))
             {
-                _velocity.Y++; 
+                _velocity.Y+=0.3f; 
                 Position.Y -= _velocity.Y;
             }
             else
