@@ -17,8 +17,7 @@ namespace SpaceInvaders
 
 		public override void Update (GameTime gameTime)
 		{
-            Position = Common.SpaceInvadersMovement(gameTime, Position, ref _directionX, LimitWidth, LimitHeight);
-            //New level and new strong Enemi level too            
+            Position = Common.SpaceInvadersMovement(gameTime, Position, ref _directionX, LimitWidth, LimitHeight);          
         }
 
 		protected override void LoadContent ()

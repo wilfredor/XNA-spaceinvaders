@@ -8,7 +8,7 @@ namespace SpaceInvaders
     [ComVisibleAttribute(false)]
     public class Package : GameObject
     {
-        int directionX;
+        private int _directionX;
         int lifeTime = 0;
         public string TextureName;
         private Random rnd;
@@ -30,25 +30,6 @@ namespace SpaceInvaders
             _positionPackage = new Vector2(rnd.Next(200, 600), rnd.Next(200, 300));
         }
 
-        private void CircularMovement(GameTime gameTime)
-        {
-            float time = (float)gameTime.TotalGameTime.TotalSeconds;
-            float speed = 3;
-            float radius = 50;
-            //Center origin position x,y
-            if ((_positionPackage.X == LimitWidth) || (_positionPackage.X == 0))
-            {
-                directionX *= -4;
-            }
-
-            _positionPackage = new Vector2(_positionPackage.X + directionX,0);
-
-            Position = new Vector2(
-                (float)(Math.Cos(time * speed) * radius + _positionPackage.X) / 2,
-                (float)(Math.Sin(time * speed) * radius + _positionPackage.Y) * 2
-            );
-        }
-
         public virtual void ApplyRule()
         {
 
@@ -56,11 +37,9 @@ namespace SpaceInvaders
         public override void Update(GameTime gameTime)
         {
 
-            CircularMovement(gameTime);
-
             lifeTime++;
 
-            if (lifeTime == 2000)
+            if (lifeTime == Constant.LivePackageTime)
             {
                 Game.Components.Remove(this);
                 Delete = true;
@@ -73,6 +52,8 @@ namespace SpaceInvaders
                 Game.Components.Remove(this);
                 Delete = true;
             }
+
+            Position = Common.CircularMovement(gameTime, _positionPackage, ref _directionX, LimitWidth, LimitHeight);
         }
 
         protected override void LoadContent()
@@ -87,19 +68,15 @@ namespace SpaceInvaders
             base.Initialize();
 
             Texture = Game.Content.Load<Texture2D>(TextureName);
-            Velocity = new Vector2(0.1f, 0.1f);
+            Velocity = new Vector2(1, 1);
             Width = Texture.Width;
             Height = Texture.Height;
-
-            Position = new Vector2(
-                (Texture.Width + Texture.Width / 2),
-                Game.GraphicsDevice.Viewport.Width / 2 - Texture.Width
-            );
-           
+                    
             LimitHeight = GameInfo.Height - (Texture.Height);
             LimitWidth = GameInfo.Width - (Texture.Width);
  
-            directionX = 1;
+            _directionX = 1;
+            lifeTime = 0;
 
         }
 

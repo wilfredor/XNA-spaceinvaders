@@ -47,8 +47,8 @@ namespace SpaceInvaders
             Components.Add(new Map(this));
             GameInfo.Level = 1;
             GameInfo.Score = 0;
-            GameInfo.Lives = Constant.DefaultLivesQuantity;
-            GameInfo.Shots = Constant.DefaultShootsQuantity;
+            GameInfo.Lives = Constant.LivesQuantity;
+            GameInfo.Shots = Constant.ShootsQuantity;
             GameInfo.Height = GraphicsDevice.Viewport.Height;
             GameInfo.Width = GraphicsDevice.Viewport.Width;
 
@@ -100,14 +100,14 @@ namespace SpaceInvaders
                 }
             }
 
-            Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
-            Components.OfType<LivePackage>().ToList().RemoveAll(x => x.Delete);
+            //Components.OfType<BulletPackage>().ToList().RemoveAll(x => x.Delete);
+            //Components.OfType<LivePackage>().ToList().RemoveAll(x => x.Delete);
             //Components.OfType<Enemie>().ToList().
 
             //win bullets
             if (Components.OfType<BulletPackage>().Count().Equals(0))
             {
-                if (GameInfo.Shots == 0)
+                if (GameInfo.Shots.Equals(0))
                 {
                     Components.Add(new BulletPackage(this));
                 }
@@ -117,7 +117,7 @@ namespace SpaceInvaders
             //win a live
             if (Components.OfType<LivePackage>().Count().Equals(0))
             {
-                if (GameInfo.Lives == 1)
+                if (GameInfo.Lives.Equals(1))
                 {
                     Components.Add(new LivePackage(this));
                 }

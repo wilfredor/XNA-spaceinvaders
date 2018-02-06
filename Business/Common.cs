@@ -65,6 +65,33 @@ namespace SpaceInvaders
             );
         }
 
+        public static Vector2 CircularMovement(GameTime gameTime, Vector2 _position, ref int _directionX, int limitX, int limitY)
+        {
+            float time = (float)gameTime.TotalGameTime.TotalSeconds;
+            float speed = 3;
+            float radius = 50;
+            //Center origin position x,y
+            if (IsBorderY((int)_position.Y, limitY))
+            {
+                _position.Y = 0;
+            }
+
+            if (IsBorderX((int)_position.X, limitX))
+            {
+                //Change movement to back (-1) or forward (1) if the Enemi is in the border X
+                _directionX *= -1;
+            }
+
+            _position.Y += 0.5f;
+
+            _position = new Vector2(_position.X + _directionX, 0);
+
+            return new Vector2(
+                (float)(Math.Cos(time * speed) * radius + _position.X) / 2,
+                (float)(Math.Sin(time * speed) * radius + _position.Y) * 2
+            );
+        }
+
 
     }
 }

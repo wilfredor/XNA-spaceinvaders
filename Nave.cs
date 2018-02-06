@@ -13,6 +13,7 @@ namespace SpaceInvaders
 		float frequenceShotSpeed = 0.1f;
 		float timeSinceLastShot = 0f;
         Boolean Delete;
+        private int _recoil;
 
 		public Nave (SpaceInvaders game) : base (game)
 		{
@@ -40,21 +41,29 @@ namespace SpaceInvaders
 			}
 		}
 
-		public override void Update (GameTime gameTime)
-		{
-            
+        public override void Update(GameTime gameTime)
+        {
+
             MouseState state = Mouse.GetState();
 
-            // Update our sprites position to the current cursor        
+            // Update our sprites position to the current cursor    
+            if (_recoil==0)
             Position = new Vector2(state.X, state.Y);
 
-
+            if (_recoil > 0)
+            {
+                _recoil--;
+            }
             // Check if Right Mouse Button pressed, if so, exit
             if ((state.LeftButton == ButtonState.Pressed) && (GameInfo.Shots > 0))
             {
                 Shoot();
+                _recoil = 5;
+                Position.Y+=1;
             }
             else { timeSinceLastShot = 0f; }
+
+           
 
             List<Enemie> listEnemie = Collision.CheckCollision<Enemie>(Position, Game);//,true);
 
@@ -75,9 +84,7 @@ namespace SpaceInvaders
                 }
                 
             }
-
-			timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
-			
+			timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;			
 		}
 
 		protected override void LoadContent ()
@@ -96,7 +103,10 @@ namespace SpaceInvaders
             Delete = false;
 
             InitialPosition();
-		}
+
+            _recoil = 0;
+
+        }
 
         public void InitialPosition()
         {
